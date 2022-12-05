@@ -7,6 +7,9 @@ import store from './store'        // Import router         (links relative path
 // Prevents the production tip on Vue startup
 Vue.config.productionTip = false
 
+// Import bootstrap css
+import "bootstrap/dist/css/bootstrap.min.css";
+
 // Instantiate new vue Object
 new Vue({
   router,
@@ -14,3 +17,5 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+// Import bootstrap js
+import "bootstrap/dist/js/bootstrap.js";

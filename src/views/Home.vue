@@ -1,6 +1,5 @@
 <template >
   <div id="app">
-    <img alt="Vue logo" src="@/assets/images/logo.png">
     <h1>Welcome to Your LAB11 Vue App</h1>
   </div>
 </template>
@@ -18,10 +17,16 @@
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 100px;
+	background-image: url('../assets/images/home_background.jpg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 100vh;
+	height: 100vh;
 }
 
-
+@media screen and (max-width: 600px) {
+	#app {
+		margin-top: 0;
+	}	
+}
 </style>
