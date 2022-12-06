@@ -1,13 +1,33 @@
-<template >
+<template>
   <div id="app">
-    <h1>Welcome to Your LAB11 Vue App</h1>
+    <h1>{{ msg }}</h1>
   </div>
 </template>
 
 
 
 <script>
-	
+// var w = window.innerWidth;
+// var h = window.innerHeight;
+export default {
+	name: "Home",
+	data () {
+		return {
+			msg: 'Welcome to Your LAB11 Vue App',
+			w: window.innerWidth,
+			h: window.innerHeight
+		}
+	},
+	mounted() {
+
+	},
+	methods: {
+
+	},
+	computed: {
+
+	},
+}
 </script>
 
 
