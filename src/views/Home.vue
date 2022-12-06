@@ -7,19 +7,18 @@
 
 
 <script>
-// var w = window.innerWidth;
-// var h = window.innerHeight;
 export default {
 	name: "Home",
-	data () {
+	data() {
 		return {
 			msg: 'Welcome to Your LAB11 Vue App',
-			w: window.innerWidth,
-			h: window.innerHeight
 		}
 	},
 	mounted() {
-
+		window: {
+			width: 0,
+			height: 0
+		}
 	},
 	methods: {
 
