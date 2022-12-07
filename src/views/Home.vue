@@ -1,8 +1,8 @@
 <template>
   <div id="app">
 		<div id="content-wrapper">
-			<h1 class="title is-1">
-				Your Window
+			<h1>
+				{{ background.image }}
 			</h1>
 			<h3 class="title is-3">
 				Width: {{ window.width }} px<br/>
@@ -33,7 +33,7 @@ export default {
 				height: 0
 			},
 			background: {
-				image: "@/assets/images/home_background.jpg",
+				image: Image,
 				width: window.width,
 				height: window.height
 			},
@@ -41,7 +41,9 @@ export default {
 		}
 	},
 	mounted() {
-		
+		console.clear();
+		this.background.image = new Image(this.background.width, this.background.height);
+		this.background.image.src = '@/assets/images/home_background.jpg';
 	},
 	created() {
 		window.addEventListener('resize', this.handleResize);
@@ -87,7 +89,6 @@ html,
     justify-content: center;
     align-items: center;
 	color: black;	
-    background: linear-gradient($top-color, $bottom-color);
 }
 
 </style>
