@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+	<div :style="image"></div>
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -11,14 +12,18 @@ export default {
 	name: "Home",
 	data() {
 		return {
+			image: {
+				backgroundImage: "@/assets/images/home_background.jpg"
+			},
+			window: {
+				width: 0,
+				height: 0
+			},
 			msg: 'Welcome to Your LAB11 Vue App',
 		}
 	},
 	mounted() {
-		window: {
-			width: 0,
-			height: 0
-		}
+
 	},
 	methods: {
 
@@ -26,6 +31,7 @@ export default {
 	computed: {
 
 	},
+
 }
 </script>
 
@@ -39,8 +45,6 @@ export default {
 	background-image: url('../assets/images/home_background.jpg');
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 100vh;
-	height: 100vh;
 }
 
 @media screen and (max-width: 600px) {
