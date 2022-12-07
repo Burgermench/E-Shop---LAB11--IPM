@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-	<v-img
-		contain
-		lazy-src="@/assets/images/home_background.jpg" 
-		max-height="280" 
-		max-width="482" 
-		src="@/assets/images/home_background.jpg"
-		id="background_image"
-	>
-		<div>
+		<div id="content-wrapper">
 			<h1 class="title is-1">
 				Your Window
 			</h1>
@@ -22,10 +14,12 @@
 				&darr;
 			</p>
 		</div>
-	</v-img>
     <h1>{{ msg }}</h1>
   </div>
 </template>
+
+
+
 
 
 
@@ -34,12 +28,14 @@ export default {
 	name: "Home",
 	data() {
 		return {
-			image: {
-				backgroundImage: "@/assets/images/home_background.jpg"
-			},
 			window: {
 				width: 0,
 				height: 0
+			},
+			background: {
+				image: "@/assets/images/home_background.jpg",
+				width: window.width,
+				height: window.height
 			},
 			msg: 'Welcome to Your LAB11 Vue App',
 		}
@@ -69,6 +65,9 @@ export default {
 
 
 
+
+
+
 <style lang="scss" scoped>
 $top-color: yellow;
 $bottom-color: tomato;
@@ -82,7 +81,7 @@ html,
 	-moz-osx-font-smoothing: grayscale;
 }
 
-#showoff {
+#content-wrapper {
     display: flex;
     flex-flow: column;
     justify-content: center;
