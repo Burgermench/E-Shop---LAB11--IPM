@@ -5,7 +5,7 @@
 			<img id="bckg_img">
 
 			<div id="r1c1">
-				&rarr; <button id="cpu_btn"><img id="cpu_img"></button> &larr;
+				&rarr; <button id="cpu_btn"> <img id="cpu_img"> </button> &larr;
 			</div>
 			
 			<div id="debug">
@@ -131,7 +131,6 @@ div {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	
 }
 
 #c1r2 {
@@ -141,11 +140,33 @@ div {
 	height: 100%;
 }
 
+// we want to center the button in the middle of the screen
+// so as to align it with the motherboard cpu slot
+$button_xpos: 37vw;
+$button_ypos: 33vh;
+
+$button_width: 21vw;
+$button_height: 32vh;
+
 #cpu_btn {
 	grid-area: cpu_btn;
 	position: fixed;
-	width: 100px;
-	height: 100px;
+	margin-left: $button_xpos;
+	margin-top: $button_ypos;
+	width: button_width;
+	height: button_height;
+	z-index: 1;
+	background: transparent;
+	border: solid;
+	border-color: gray;
+	border-width: 5px;
+}
+
+// this image goes inside the button
+#cpu_img {
+	width: 20%;
+	height: 20%;
 	z-index: 1;
 }
+
 </style>
