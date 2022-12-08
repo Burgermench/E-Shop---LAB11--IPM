@@ -3,10 +3,16 @@
 		<div id="content-wrapper">
 			
 			<img id="bckg_img">
-
-			<div id="button">
-				&rarr; <button id="cpu_btn" > <img id="cpu_img"> </button> &larr;
-			</div>
+				<div id="button">
+					&rarr; 
+					<button
+						id="cpu_btn"
+						@click="$router.push('/Menu')"
+					>
+						<img id="cpu_img">
+					</button>
+					&larr;
+				</div>
 		
 		</div>
 	</div>
@@ -68,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 // DEBUG
-$debug: true;
+$debug: false;
 
 @mixin debug(){
 	border-style: dashed;
