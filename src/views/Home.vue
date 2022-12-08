@@ -4,14 +4,8 @@
 			
 			<img id="bckg_img">
 
-			<div id="r1c1">
-				&rarr; <button id="cpu_btn"> <img id="cpu_img"> </button> &larr;
-			</div>
-			
-			<div id="debug">
-				{{ msg }}<br>
-				Width: {{ window.width }} px<br/>
-				Height: {{ window.height }} px
+			<div id="button">
+				&rarr; <button id="cpu_btn" > <img id="cpu_img"> </button> &larr;
 			</div>
 		
 		</div>
@@ -34,7 +28,7 @@ export default {
 				width: 50,
 				height: 50,
 			},
-			msg: 'Debug msg',
+			msg: 'Tap the cpu to procede...',
 		}
 	},
 
@@ -122,22 +116,8 @@ div {
 	margin-right: 25%;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 20%, 80%;
-	grid-template-areas: "c1r1" "c1r2";
-}
-
-#c1r1 {
-	grid-area: c1r1;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-}
-
-#c1r2 {
-	grid-area : c1r2;
-	position: fixed;
-	width: 100%;
-	height: 100%;
+	grid-template-rows: 90%, 10%;
+	grid-template-areas: "cpu_btn" "msg_board";
 }
 
 /* CPU BUTTON */
@@ -151,8 +131,6 @@ $button_ypos: 33vh;
 
 $button_width: 21vw;
 $button_height: 32vh;
-
-
 
 @mixin cpu_button() {
 	grid-area: cpu_btn;
@@ -170,10 +148,10 @@ $button_height: 32vh;
 	
 	&:hover {
 		@include cpu_button();
-		width: $button_width - 1vw;
-		height: $button_height - 1vh;
-		margin-left: $button_xpos + .5vw;
-		margin-top: $button_ypos + .5vh;
+		width: $button_width - .2vw;
+		height: $button_height - .2vh;
+		margin-left: $button_xpos + .1vw;
+		margin-top: $button_ypos + .1vh;
 	}
 
 	&:active {
@@ -183,17 +161,36 @@ $button_height: 32vh;
 		margin-left: $button_xpos + 1vw;
 		margin-top: $button_ypos + 1vh;
 	}
-}
 
-$cpu_img_width: 110%;
-$cpu_img_height: 105%;
+	&:focus {
+		@include cpu_button();
+		width: $button_width - 2vw;
+		height: $button_height - 2vh;
+		margin-left: $button_xpos + 1vw;
+		margin-top: $button_ypos + 1vh;
+	}
+}
 
 #cpu_img {
 	margin-top: -.5vh;
 	margin-left: -1vw;
-	width: $cpu_img_width;
-	height: $cpu_img_height;
+	width: 110%;
+	height: 105%;
 	z-index: 1;
 }
+
+// Message board
+#msg_board {
+	grid-area: msg_board;
+	position: fixed;
+	margin-left: 37vw;
+	margin-top: 65vh;
+	width: 21vw;
+	height: 10vh;
+	z-index: 0;
+	text-align: center;
+	font-size: 1.5em;
+}
+
 
 </style>
