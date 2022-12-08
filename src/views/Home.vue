@@ -140,32 +140,59 @@ div {
 	height: 100%;
 }
 
-// we want to center the button in the middle of the screen
-// so as to align it with the motherboard cpu slot
+/* CPU BUTTON */
+
+// We want it to gradually shrink when hovered
+// and more rapidly shrink when clicked
+// and then grow back to normal when released
+
 $button_xpos: 37vw;
 $button_ypos: 33vh;
 
 $button_width: 21vw;
 $button_height: 32vh;
 
-#cpu_btn {
+
+
+@mixin cpu_button() {
 	grid-area: cpu_btn;
 	position: fixed;
 	margin-left: $button_xpos;
 	margin-top: $button_ypos;
-	width: button_width;
-	height: button_height;
-	z-index: 1;
+	width: $button_width;
+	height: $button_height;
+	z-index: 0;
 	background: transparent;
-	border: solid;
-	border-color: gray;
-	border-width: 5px;
 }
 
-// this image goes inside the button
+#cpu_btn {
+	@include cpu_button();
+	
+	&:hover {
+		@include cpu_button();
+		width: $button_width - 1vw;
+		height: $button_height - 1vh;
+		margin-left: $button_xpos + .5vw;
+		margin-top: $button_ypos + .5vh;
+	}
+
+	&:active {
+		@include cpu_button();
+		width: $button_width - 2vw;
+		height: $button_height - 2vh;
+		margin-left: $button_xpos + 1vw;
+		margin-top: $button_ypos + 1vh;
+	}
+}
+
+$cpu_img_width: 110%;
+$cpu_img_height: 105%;
+
 #cpu_img {
-	width: 20%;
-	height: 20%;
+	margin-top: -.5vh;
+	margin-left: -1vw;
+	width: $cpu_img_width;
+	height: $cpu_img_height;
 	z-index: 1;
 }
 
