@@ -179,7 +179,7 @@ $button_height: 32vh;
 
 #cpu_img {
 	margin-top: -.5vh;
-	margin-left: -1vw;
+	margin-left: -.5vw;
 	width: 110%;
 	height: 105%;
 	z-index: 1;
