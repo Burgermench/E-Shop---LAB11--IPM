@@ -1,36 +1,63 @@
 <template>
     <div id="content-wrapper">
+
         <div id="r1">
             <div id="message_top">
                 Não temos atendimento ao balcão. Faça a sua encomenda online | Entregas grátis a partir de 20€ | 
 
-                <button id="contacts_btn" @click="showModal = true"> Contactos </button>
+                <button id="contacts_btn" v-if="showContacts == false" @click="showContacts = true"> Contactos </button>
+                <button id="contacts_btn" v-if="showContacts == true" @click="showContacts = false"> Contactos </button>
 
-                <div v-if="showModal == true" @close="showModal = false">
-                    <div @close="showModal = false">
-                        <h3 slot="header">Contactos</h3>
-                        <div slot="body">
-                            <p>Telefone: 123456789</p>
+                <div id="contacts_menu" v-if="showContacts == true" @close="showContacts = false">
+                    <div @close="showContacts = false">
+                        <div id="contacts_dropdown">
+                            <p>Telefone: +351 123456789</p>
                             <p>Email: ipm@ualg.pt</p>
                         </div>
                     </div>
-                    <button @click="showModal = false">Close</button>
                 </div> 
             </div>
         </div>
-        <div id="r1c1">
 
+        <div id="r2">
+            <div id="logo">
+                <img id="custom_logo" src="@/assets/images/custom_logo.png" alt="logo">
+            </div>
+
+            <div id="search">
+                <input id="search_input" type="text" placeholder="Pesquisar">
+                <button id="search_btn"> <img id="search_img" alt="search"> </button>
+            </div>
+
+            <div id="cart">
+                <img id="cart_img" alt="cart">
+                <p id="cart_text"> Carrinho </p>
+            </div>
         </div>
+
     </div>
 </template>
 
 <script>
 
 export default {
+    name: "Header",
+
     data() {
         return {
-            showModal: false,
+            showContacts: false,
         }
+    },
+
+    created() {
+    
+    },
+
+    mounted() {
+        document.getElementById('bckg_img').src = require('@/assets/images/background_white_pattern_triangles.png');
+        document.getElementById('custom_logo').src = require('@/assets/images/custom_logo.png');
+        document.getElementById('search_img').src = require('@/assets/images/search_spyglass.png');
+        document.getElementById('cart_img').src = require('@/assets/images/cart.png');
     },
 
     methods: {	
@@ -69,21 +96,15 @@ div {
 #content-wrapper {
     position: relative;
     width: 100%;
-    height: 75px;
     @include font();
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 25px 40px 20px;
+    grid-template-rows: 30px 140px 100px;
     grid-template-areas: "r1" "r2" "r3";
+    color: white;
 }
 
 #r1 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 25px;
-    background-color: #ff0000;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -92,17 +113,12 @@ div {
 
 #message_top {
     grid-area: message_top;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 25px;
-    border: 1px dashed rgb(161, 70, 70);
-    background-color: #ff0000;
+    background-color: #c02000;
+    padding-top: 3px;
     padding-left: 15px;
     text-align: left;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    color: #000;
 }
 
 @mixin contacts_btn() {
@@ -110,6 +126,7 @@ div {
     border: none;
     background-color: transparent;
     font-weight: bold;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 #contacts_btn {
@@ -117,25 +134,84 @@ div {
 
     &:hover {
         cursor: pointer;
-        font-size: 10px;
     }
-
+    
     &:active {
-        font-size: 12px;
+        font-size: 11px;
+        color: grey;
     }
-
+    
     &:focus {
         outline: none;
-        background-color: rgb(190, 0, 0); 
     }
+}
+
+#contacts_menu {
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    background-color: #c02000;
+    z-index: 4;
+    margin-left: 520px;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+#contacts_dropdown {
+    padding-top: 5px;
+    line-height: 0.3;
 }
 
 #r2 {
     grid-area: r2;
-    position: relative;
-    width: 100%;
-    height: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "logo search cart";
+}
+
+#logo {
+    grid-area: logo;
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+#search {
+    grid-area: search;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "search_input search_btn";
+    padding-right: 15px;
+    text-align: right;
+}
+
+#search_input {
+    grid-area: search_input;
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #c02000;
+}
+
+#search_btn {
+    grid-area: search_btn;
+    padding-top: 5px;
+    padding-right: 5px;
     
+}
+
+#cart {
+    grid-area: cart;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "cart_img cart_text";
+    padding-right: 15px;
+    text-align: right;
 }
 
 

@@ -57,7 +57,12 @@ export default {
 		resize() {
 			this.window.width = window.innerWidth;
 			this.window.height = window.innerHeight;
-		}
+			console.log(this.window);
+		},
+
+		handleResize() {
+			this.resize();
+		},
 	},
 
 	computed: {

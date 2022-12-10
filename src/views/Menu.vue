@@ -2,7 +2,7 @@
 	<div>
 		<Header/>
 			<div class="content-wrapper">
-				
+				<img id="bckg_img">	
 
 
 
@@ -29,7 +29,7 @@ export default {
 		}
 	},
 	mounted() {
-
+		document.getElementById('bckg_img').src = require('@/assets/images/background_white_pattern_triangles.png');
 	},
 	methods: {
 	
@@ -51,6 +51,13 @@ export default {
 	font-size: 20px;
 	font-weight: bold;
 	color: #000;
+}
+
+#bckg_img {
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 </style>
