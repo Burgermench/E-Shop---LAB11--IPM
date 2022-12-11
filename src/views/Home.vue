@@ -133,10 +133,6 @@ div {
 
 /* CPU BUTTON */
 
-// We want it to gradually shrink when hovered
-// and more rapidly shrink when clicked
-// and then grow back to normal when released
-
 $button_xpos: 37vw;
 $button_ypos: 33vh;
 

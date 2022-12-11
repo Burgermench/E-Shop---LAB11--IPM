@@ -44,8 +44,7 @@ export default {
 
 
 <style scoped>
-#message_top {
-	background-color: #f5f5f5;
+#content-wrapper {
 	padding: 10px;
 	text-align: center;
 	font-size: 20px;

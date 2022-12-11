@@ -21,7 +21,7 @@
 
         <div id="r2">
             <div id="logo">
-                <img id="custom_logo" src="@/assets/images/custom_logo.png" alt="logo">
+                <img id="custom_logo" alt="logo">
             </div>
 
             <div id="search">
@@ -31,7 +31,6 @@
 
             <div id="cart">
                 <img id="cart_img" alt="cart">
-                <p id="cart_text"> Carrinho </p>
             </div>
         </div>
 
@@ -50,26 +49,42 @@ export default {
     },
 
     created() {
-    
+        window.addEventListener('resize', this.handleResize);
     },
 
     mounted() {
+        this.resize();
         document.getElementById('bckg_img').src = require('@/assets/images/background_white_pattern_triangles.png');
         document.getElementById('custom_logo').src = require('@/assets/images/custom_logo.png');
         document.getElementById('search_img').src = require('@/assets/images/search_spyglass.png');
         document.getElementById('cart_img').src = require('@/assets/images/cart.png');
     },
 
-    methods: {	
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
 
+    methods: {	
+        resize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+        },
+
+        handleResize() {
+            this.resize();
+        },
     },
 
     computed: {
         
     },
 }
-
 </script>  
+
+
+
+
+
 
 <style lang="scss" scoped>
 // DEBUG
@@ -178,19 +193,20 @@ div {
 #search {
     grid-area: search;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    height: 17%;
+    grid-template-columns: 300px 35px;
     grid-template-rows: 1fr;
     grid-template-areas: "search_input search_btn";
-    padding-right: 15px;
     text-align: right;
+    margin-top: 40px;
+    margin-left: 20px;
 }
 
 #search_input {
     grid-area: search_input;
-    width: 300px;
-    height: 30px;
     border: none;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     padding-left: 10px;
     font-size: 14px;
     font-weight: bold;
@@ -199,9 +215,11 @@ div {
 
 #search_btn {
     grid-area: search_btn;
-    padding-top: 5px;
-    padding-right: 5px;
-    
+    position: relative;
+    right: 0;
+    z-index: 1;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 #cart {
@@ -213,6 +231,5 @@ div {
     padding-right: 15px;
     text-align: right;
 }
-
 
 </style>
