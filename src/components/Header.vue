@@ -21,16 +21,16 @@
 
         <div id="r2">
             <div id="logo">
-                <img id="custom_logo" alt="logo">
+                <canvas id="custom_logo"></canvas>
             </div>
 
             <div id="search">
                 <input id="search_input" type="text" placeholder="Pesquisar">
-                <button id="search_btn"> <img id="search_img" alt="search"> </button>
+                <button id="search_btn"> <canvas id="search_img"></canvas> </button>
             </div>
 
             <div id="cart">
-                <img id="cart_img" alt="cart">
+                <canvas id="cart_img"></canvas>
             </div>
         </div>
 
@@ -38,40 +38,68 @@
 </template>
 
 <script>
+// we need to resize the content based on the window size
+// for that
+// firstly we need to get the window size
+// then we need to resize the content based on the window size
+
 
 export default {
     name: "Header",
 
     data() {
         return {
+            window: {
+                width: 50,
+                height: 50,
+            },
             showContacts: false,
         }
     },
 
     created() {
-        window.addEventListener('resize', this.handleResize);
+        window.addEventListener('resizeWindow', this.handleResizeWindow);
     },
-
+    
     mounted() {
-        this.resize();
-        document.getElementById('bckg_img').src = require('@/assets/images/background_white_pattern_triangles.png');
-        document.getElementById('custom_logo').src = require('@/assets/images/custom_logo.png');
-        document.getElementById('search_img').src = require('@/assets/images/search_spyglass.png');
-        document.getElementById('cart_img').src = require('@/assets/images/cart.png');
+        this.resizeWindow();
+
+        // get the parent element width
+        //let custom_logo_parent_width = document.getElementById("logo").offsetWidth;
+        this.getImageResized("custom_logo", 320, undefined, require("@/assets/images/custom_logo.png"));
+        this.getImageResized("search_img", 20, undefined, require("@/assets/images/search_spyglass.png"));
+        this.getImageResized("cart_img", 100, undefined, require("@/assets/images/cart.png"));
     },
 
     destroyed() {
-        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('resizeWindow', this.handleResizeWindow);
     },
 
-    methods: {	
-        resize() {
+    methods: {
+        getImageResized(elementId, w, h, source) {
+            var img = new Image(),
+                canvas = document.getElementById(elementId),
+                ctx = canvas.getContext("2d");
+            img.onload = () => {
+                canvas.width = w;
+                if(h == undefined) {
+                    canvas.height = (img.naturalHeight * w) / img.naturalWidth;
+                } else {
+                    canvas.height = h;
+                }
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = source;
+            return img;
+        },
+
+        resizeWindow() {
             this.window.width = window.innerWidth;
             this.window.height = window.innerHeight;
         },
 
-        handleResize() {
-            this.resize();
+        handleResizeWindow() {
+            this.resizeWindow();
         },
     },
 
@@ -126,6 +154,8 @@ div {
     grid-template-areas: "message_top";
 }
 
+/* MESSAGE TOP */
+
 #message_top {
     grid-area: message_top;
     background-color: #c02000;
@@ -144,6 +174,8 @@ div {
     text-shadow: 1px 1px 1px #000000;
 }
 
+/* CONTACTS BUTTON */
+
 #contacts_btn {
     @include contacts_btn();
 
@@ -160,6 +192,8 @@ div {
         outline: none;
     }
 }
+
+/* CONTACTS DROPDOWN */
 
 #contacts_menu {
     position: absolute;
@@ -184,11 +218,15 @@ div {
     grid-template-areas: "logo search cart";
 }
 
+/* LOGO */
+
 #logo {
     grid-area: logo;
     padding-top: 10px;
     padding-left: 5px;
 }
+
+/* SEARCH BAR */
 
 #search {
     grid-area: search;
@@ -213,6 +251,8 @@ div {
     color: #c02000;
 }
 
+/* SEARCH BUTTON */
+
 #search_btn {
     grid-area: search_btn;
     position: relative;
@@ -221,6 +261,8 @@ div {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+/* CART BUTTON */
 
 #cart {
     grid-area: cart;
