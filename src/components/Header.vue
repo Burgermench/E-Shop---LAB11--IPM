@@ -25,7 +25,7 @@
             </div>
 
             <div id="search">
-                <input id="search_input" type="text" placeholder="Pesquisar">
+                <input id="search_input" type="text" placeholder="Pesquise por produtos, marcas ou caracteristicas">
                 <button id="search_btn"> <canvas id="search_img"></canvas> </button>
             </div>
 
@@ -68,7 +68,7 @@ export default {
         let customLogoParentWidth = document.getElementById("logo").offsetWidth*0.90;
         let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
         this.getImageResized("custom_logo", customLogoParentWidth, customLogoParentHeight, require("@/assets/images/custom_logo.png"));
-        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.45;
+        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.35       ;
         let searchImgParentHeight = document.getElementById("search_btn").offsetHeight*0.5;
         this.getImageResized("search_img", searchImgParentWidth, searchImgParentHeight, require("@/assets/images/search_spyglass.png"));
         //let cartImgParentWidth = document.getElementById("cart").offsetWidth;
@@ -127,7 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 // DEBUG
-$debug: true;
+$debug: false;
 
 @mixin debug() {
 	border-style: dashed;
@@ -244,13 +244,13 @@ div {
 #search {
     grid-area: search;
     display: grid;
-    grid-template-rows: 40px;
-    grid-template-columns: 250px 42px;
+    grid-template-rows: 38px;
+    grid-template-columns: 160% 15%;
     grid-template-areas: "search_input search_btn";
     z-index: 2;
     position: absolute;
-    bottom: 20%;
-    right: 20%;
+    bottom: 10%;
+    left: 15%;
 }
 
 #search_input {
@@ -297,7 +297,7 @@ div {
     grid-area: cart_img;
     position: relative;
     top: 20%;
-    left: 80%;
+    left: 60%;
     z-index: 1;
     border-radius: 100%;
     border: 4px solid #c02000;
