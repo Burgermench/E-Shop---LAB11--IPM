@@ -45,7 +45,6 @@ export default {
 
 <style scoped>
 #content-wrapper {
-	padding: 10px;
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;

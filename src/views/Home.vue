@@ -1,19 +1,23 @@
 <template>
 	<div id="app">
 		<div id="content-wrapper">
-			
+			<div id="msg1">
+				<h1>Find all the components you need</h1>
+			</div>
 			<img id="bckg_img">
-				<div id="button">
-					&rarr; 
-					<button
-						id="cpu_btn"
-						@click="$router.push('/Menu')"
-					>
-						<img id="cpu_img">
-					</button>
-					&larr;
-				</div>
-		
+			<div id="button">
+				&rarr; 
+				<button
+					id="cpu_btn"
+					@click="$router.push('/Menu')"
+				>
+					<img id="cpu_img">
+				</button>
+				&larr;
+			</div>
+			<div id="msg2">
+				<h1>At the best prices!</h1>
+			</div>
 		</div>
 	</div>
 </template>
@@ -45,7 +49,7 @@ export default {
 
 	mounted() {
 		this.resize();
-		document.getElementById('bckg_img').src = require('@/assets/images/home_background.jpg');
+		document.getElementById('bckg_img').src = require('@/assets/images/home_background.png');
 		document.getElementById('cpu_img').src = require('@/assets/images/cpu.png');
 	},
 
@@ -199,5 +203,28 @@ $button_height: 32vh;
 	font-size: 1.5em;
 }
 
+#msg1 {
+	//text centered
+	position: fixed;
+	margin-left: 30vw;
+	margin-top: 25vh;
+	color: black;
+	//give the text some shadow
+	text-shadow: 1px 1px 1px #000;
+	z-index: 0;
+	font-size: 1.5em;
+}
+
+#msg2 {
+	position: fixed;
+	margin-left: 53vw;
+	margin-top: 70vh;
+	color:black;
+	//give the text some shadow
+	text-shadow: 1px 1px 1px #000;
+	z-index: 0;
+	text-align: center;
+	font-size: 1.5em;
+}
 
 </style>

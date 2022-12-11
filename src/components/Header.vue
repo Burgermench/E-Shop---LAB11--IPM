@@ -65,10 +65,16 @@ export default {
         this.resizeWindow();
 
         // get the parent element width
-        //let custom_logo_parent_width = document.getElementById("logo").offsetWidth;
-        this.getImageResized("custom_logo", 320, undefined, require("@/assets/images/custom_logo.png"));
-        this.getImageResized("search_img", 20, undefined, require("@/assets/images/search_spyglass.png"));
-        this.getImageResized("cart_img", 100, undefined, require("@/assets/images/cart.png"));
+        let customLogoParentWidth = document.getElementById("logo").offsetWidth*0.90;
+        let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
+        this.getImageResized("custom_logo", customLogoParentWidth, customLogoParentHeight, require("@/assets/images/custom_logo.png"));
+        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.45;
+        let searchImgParentHeight = document.getElementById("search_btn").offsetHeight*0.5;
+        this.getImageResized("search_img", searchImgParentWidth, searchImgParentHeight, require("@/assets/images/search_spyglass.png"));
+        //let cartImgParentWidth = document.getElementById("cart").offsetWidth;
+        let cartImgParentHeight = document.getElementById("cart").offsetHeight*0.4;
+        this.getImageResized("cart_img", undefined, cartImgParentHeight, require("@/assets/images/cart.jpeg"));
+    
     },
 
     destroyed() {
@@ -81,13 +87,18 @@ export default {
                 canvas = document.getElementById(elementId),
                 ctx = canvas.getContext("2d");
             img.onload = () => {
-                canvas.width = w;
+                if(w == undefined) {
+                    canvas.width = (img.naturalWidth * h) / img.naturalHeight;
+                } else {
+                    canvas.width = w;
+                }
                 if(h == undefined) {
                     canvas.height = (img.naturalHeight * w) / img.naturalWidth;
                 } else {
                     canvas.height = h;
                 }
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                
             };
             img.src = source;
             return img;
@@ -147,6 +158,8 @@ div {
     color: white;
 }
 
+/* ROW 1 */
+
 #r1 {
     display: grid;
     grid-template-columns: 1fr;
@@ -158,13 +171,15 @@ div {
 
 #message_top {
     grid-area: message_top;
-    background-color: #c02000;
-    padding-top: 3px;
-    padding-left: 15px;
-    text-align: left;
     font-size: 11px;
+    text-align: left;
     font-weight: bold;
+    background-color: #c02000;
+    padding-top: 5px;
+    padding-left: 15px;
 }
+
+/* CONTACTS */
 
 @mixin contacts_btn() {
     position: relative;
@@ -173,8 +188,6 @@ div {
     font-weight: bold;
     text-shadow: 1px 1px 1px #000000;
 }
-
-/* CONTACTS BUTTON */
 
 #contacts_btn {
     @include contacts_btn();
@@ -193,8 +206,6 @@ div {
     }
 }
 
-/* CONTACTS DROPDOWN */
-
 #contacts_menu {
     position: absolute;
     width: 200px;
@@ -210,12 +221,15 @@ div {
     line-height: 0.3;
 }
 
+/* ROW2 */
+
 #r2 {
     grid-area: r2;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "logo search cart";
+    position: relative;
 }
 
 /* LOGO */
@@ -223,7 +237,6 @@ div {
 #logo {
     grid-area: logo;
     padding-top: 10px;
-    padding-left: 5px;
 }
 
 /* SEARCH BAR */
@@ -231,47 +244,63 @@ div {
 #search {
     grid-area: search;
     display: grid;
-    height: 17%;
-    grid-template-columns: 300px 35px;
-    grid-template-rows: 1fr;
+    grid-template-rows: 40px;
+    grid-template-columns: 250px 42px;
     grid-template-areas: "search_input search_btn";
-    text-align: right;
-    margin-top: 40px;
-    margin-left: 20px;
+    z-index: 2;
+    position: absolute;
+    bottom: 20%;
+    right: 20%;
 }
 
 #search_input {
     grid-area: search_input;
+    text-align: left;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    color: #ffffff;
     border: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
     padding-left: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #c02000;
+    &:focus {
+        outline: none;
+    }
 }
-
-/* SEARCH BUTTON */
 
 #search_btn {
     grid-area: search_btn;
-    position: relative;
-    right: 0;
-    z-index: 1;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    &:hover {
+        cursor: pointer;
+        background-color: #c02000;
+    }
+    &:active {
+        background-color: #c02000;
+        color: white;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
-/* CART BUTTON */
+/* CART */
 
 #cart {
     grid-area: cart;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 80% 20%;
     grid-template-rows: 1fr;
-    grid-template-areas: "cart_img cart_text";
-    padding-right: 15px;
-    text-align: right;
+    grid-template-areas: "cart_img cart_count";
+    z-index: 1;
+}
+
+#cart_img {
+    grid-area: cart_img;
+    position: relative;
+    top: 20%;
+    left: 80%;
+    z-index: 1;
+    border-radius: 100%;
+    border: 4px solid #c02000;
 }
 
 </style>
