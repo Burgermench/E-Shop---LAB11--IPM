@@ -17,20 +17,22 @@ import Vue    from 'vue'              // Import vue class      (to use vue objec
 import App    from './App.vue'        // Import App component  (centralizes all components)         [used by vue object]
 import router from './router'         // Import store          (container for application state)    [used by vue object]
 import store  from './store'          // Import router         (links relative paths to components) [used by App component]
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/src/jquery.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import bootstrapvue from 'bootstrap-vue' // Import bootstrap-vue
+import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 // Prevents the production tip on Vue startup
 Vue.config.productionTip = false
 
-// Import bootstrap css
-
-// Instantiate new vue Object
 new Vue({
   router,
   store,
+  bootstrapvue,
+  bootstrap,
+  jquery,
+  bjs,
   render: h => h(App)
 }).$mount('#app')
 
-// Import bootstrap js
+
+import jquery from 'jquery/src/jquery.js';
+import bjs from 'bootstrap/dist/js/bootstrap.min.js';
