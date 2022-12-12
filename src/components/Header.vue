@@ -1,13 +1,12 @@
-<template>
-    <div id="content-wrapper">
-
+<!--
+    <nav>
         <div id="r1">
             <div id="message_top">
                 Não temos atendimento ao balcão. Faça a sua encomenda online | Entregas grátis a partir de 20€ | 
-
+                
                 <button id="contacts_btn" v-if="showContacts == false" @click="showContacts = true"> Contactos </button>
                 <button id="contacts_btn" v-if="showContacts == true" @click="showContacts = false"> Contactos </button>
-
+                
                 <div id="contacts_menu" v-if="showContacts == true" @close="showContacts = false">
                     <div @close="showContacts = false">
                         <div id="contacts_dropdown">
@@ -18,22 +17,74 @@
                 </div> 
             </div>
         </div>
-
+        
         <div id="r2">
             <div id="logo">
                 <canvas id="custom_logo"></canvas>
             </div>
-
+            
             <div id="search">
                 <input id="search_input" type="text" placeholder="Pesquise por produtos, marcas ou caracteristicas">
-                <button id="search_btn"> <canvas id="search_img"></canvas> </button>
+                    <button id="search_btn"> <canvas id="search_img"></canvas> </button>
+                </div>
+                
+                <div id="cart">
+                    <canvas id="cart_img"></canvas>
+                </div>
             </div>
+            
+        </nav>
+    -->
+<template>
+    <div id="content-wrapper">
+               
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div id="cart">
-                <canvas id="cart_img"></canvas>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                        href="#" 
+                        id="navbarDropdown" 
+                        role="button" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">
+                            Dropdown
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
-        </div>
-
+        </nav>
     </div>
 </template>
 
@@ -43,6 +94,7 @@ export default {
 
     data() {
         return {
+            cart_count: 0,
             window: {
                 width: 50,
                 height: 50,
@@ -57,7 +109,7 @@ export default {
     
     mounted() {
         this.resizeWindow();
-
+        /*
         // get the parent element width
         let customLogoParentWidth = document.getElementById("logo").offsetWidth*0.90;
         let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
@@ -68,7 +120,7 @@ export default {
         //let cartImgParentWidth = document.getElementById("cart").offsetWidth;
         let cartImgParentHeight = document.getElementById("cart").offsetHeight*0.4;
         this.getImageResized("cart_img", undefined, cartImgParentHeight, require("@/assets/images/cart.jpeg"));
-    
+        */
     },
 
     destroyed() {
@@ -115,10 +167,12 @@ export default {
 </script>  
 
 
+<style lang="scss" scoped>
+
+</style>
 
 
-
-
+<!-- 
 <style lang="scss" scoped>
 // DEBUG
 $debug: false;
@@ -244,7 +298,7 @@ div {
     z-index: 2;
     position: absolute;
     bottom: 10%;
-    left: 15%;
+    left: 15%;  
 }
 
 #search_input {
@@ -298,3 +352,4 @@ div {
 }
 
 </style>
+-->
