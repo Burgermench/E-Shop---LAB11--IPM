@@ -4,7 +4,7 @@
   * Vue E-Commerce App (IPM-2022)
   ==================================================================================================
 
-  * Author:  João Miguel Cardoso
+  * Author:  João Cardoso
   * Date:    2022-12-07
  
   * URL:

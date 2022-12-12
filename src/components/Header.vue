@@ -38,12 +38,6 @@
 </template>
 
 <script>
-// we need to resize the content based on the window size
-// for that
-// firstly we need to get the window size
-// then we need to resize the content based on the window size
-
-
 export default {
     name: "Header",
 
