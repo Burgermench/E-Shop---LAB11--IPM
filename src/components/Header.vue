@@ -36,56 +36,89 @@
         </nav>
     -->
 <template>
-    <div id="content-wrapper">
-               
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+        <!-- insert image here -->
+        
+        <div class="container-fluid">
+            <div id="logo">
+                <canvas id="custom_logo"></canvas>
+            </div>
             
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">
+                Navbar
+            </a>
+
+            <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse" 
+                id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" 
-                        href="#" 
-                        id="navbarDropdown" 
-                        role="button" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" 
-                        aria-expanded="false">
+                            href="#" 
+                            id="navbarDropdown" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
                             Dropdown
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
+                        <ul class="dropdown-menu" 
+                            aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            
+                            <li>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="d-flex">
+                    <input class="form-control me-2" 
+                        type="search" 
+                        placeholder="Search" 
+                        aria-label="Search">
+                    
+                    <button class="btn btn-outline-success" 
+                        type="submit">
+                        Pesquise por produtos, marcas ou características</button>
                 </form>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+
 </template>
 
 <script>
@@ -96,8 +129,8 @@ export default {
         return {
             cart_count: 0,
             window: {
-                width: 50,
-                height: 50,
+                width: 500,
+                height: 500,
             },
             showContacts: false,
         }
@@ -109,18 +142,15 @@ export default {
     
     mounted() {
         this.resizeWindow();
-        /*
-        // get the parent element width
         let customLogoParentWidth = document.getElementById("logo").offsetWidth*0.90;
         let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
         this.getImageResized("custom_logo", customLogoParentWidth, customLogoParentHeight, require("@/assets/images/custom_logo.png"));
-        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.35       ;
+        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.35;
         let searchImgParentHeight = document.getElementById("search_btn").offsetHeight*0.5;
         this.getImageResized("search_img", searchImgParentWidth, searchImgParentHeight, require("@/assets/images/search_spyglass.png"));
         //let cartImgParentWidth = document.getElementById("cart").offsetWidth;
         let cartImgParentHeight = document.getElementById("cart").offsetHeight*0.4;
         this.getImageResized("cart_img", undefined, cartImgParentHeight, require("@/assets/images/cart.jpeg"));
-        */
     },
 
     destroyed() {
@@ -168,27 +198,25 @@ export default {
 
 
 <style lang="scss" scoped>
+// DEBUG
+$debug: true;
+@mixin debug() {
+    border-style: dashed;
+    border-color: red;
+    border-width: 1px;
+}
+div {
+    @if $debug {
+        @include debug();
+    }
+}
 
 </style>
 
 
 <!-- 
-<style lang="scss" scoped>
-// DEBUG
-$debug: false;
-
-@mixin debug() {
-	border-style: dashed;
-	border-color: red;
-	border-width: 1px;
-}
-
-div {
-	@if $debug {
-		@include debug();
-	}
-}
-
+    <style lang="scss" scoped>
+    
 @mixin font() {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
