@@ -1,126 +1,52 @@
-<!--
-    <nav>
-        <div id="r1">
-            <div id="message_top">
-                Não temos atendimento ao balcão. Faça a sua encomenda online | Entregas grátis a partir de 20€ | 
-                
-                <button id="contacts_btn" v-if="showContacts == false" @click="showContacts = true"> Contactos </button>
-                <button id="contacts_btn" v-if="showContacts == true" @click="showContacts = false"> Contactos </button>
-                
-                <div id="contacts_menu" v-if="showContacts == true" @close="showContacts = false">
-                    <div @close="showContacts = false">
-                        <div id="contacts_dropdown">
-                            <p>Telefone: +351 123456789</p>
-                            <p>Email: ipm@ualg.pt</p>
+<template>
+        <nav>
+            <div id="r1">
+                <div id="message_top">
+                    Não temos atendimento ao balcão. Faça a sua encomenda online | Entregas grátis a partir de 20€ |
+        
+                    <button id="contacts_btn" v-if="showContacts == false" @click="showContacts = true"> Contactos </button>
+                    <button id="contacts_btn" v-if="showContacts == true" @click="showContacts = false"> Contactos </button>
+        
+                    <div id="contacts_menu" v-if="showContacts == true" @close="showContacts = false">
+                        <div @close="showContacts = false">
+                            <div id="contacts_dropdown">
+                                <p>Telefone: +351 123456789</p>
+                                <p>Email: ipm@ualg.pt</p>
+                            </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
-        </div>
         
-        <div id="r2">
-            <div id="logo">
-                <canvas id="custom_logo"></canvas>
-            </div>
-            
-            <div id="search">
-                <input id="search_input" type="text" placeholder="Pesquise por produtos, marcas ou caracteristicas">
+            <div id="r2">
+                <div id="logo">
+                    <canvas id="custom_logo"></canvas>
+                </div>
+        
+                <div id="search">
+                    <input id="search_input" type="text" placeholder="Pesquise por produtos, marcas ou caracteristicas">
                     <button id="search_btn"> <canvas id="search_img"></canvas> </button>
                 </div>
                 
+                <!-- we need to convert the following cart image to a button that displays a dropdown list of the items on hover -->
                 <div id="cart">
-                    <canvas id="cart_img"></canvas>
+                    <canvas id="cart_img" 
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    ></canvas>
+                    <div id="cart_count">
+                        <p> {{ cart_count }} </p>
+                    </div>
+
+
                 </div>
             </div>
-            
-        </nav>
-    -->
-<template>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-        <!-- insert image here -->
         
-        <div class="container-fluid">
-            <div id="logo">
-                <canvas id="custom_logo"></canvas>
-            </div>
-            
-            <a class="navbar-brand" href="#">
-                Navbar
-            </a>
-
-            <button class="navbar-toggler" 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#navbarSupportedContent" 
-                aria-controls="navbarSupportedContent" 
-                aria-expanded="false" 
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" 
-                id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" 
-                            href="#" 
-                            id="navbarDropdown" 
-                            role="button" 
-                            data-bs-toggle="dropdown" 
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-
-                        <ul class="dropdown-menu" 
-                            aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                            
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-
-                <form class="d-flex">
-                    <input class="form-control me-2" 
-                        type="search" 
-                        placeholder="Produtos, marcas, caracteristicas" 
-                        aria-label="Search">
-
-                    <button class="btn btn-outline-success" 
-                        type="submit">
-                        &#128269;
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
+        </nav>
 </template>
+
 
 <script>
 export default {
@@ -144,13 +70,13 @@ export default {
     mounted() {
         this.resizeWindow();
         let customLogoParentWidth = document.getElementById("logo").offsetWidth*0.90;
-        let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
-        this.getImageResized("custom_logo", customLogoParentWidth, customLogoParentHeight, require("@/assets/images/custom_logo.png"));
-        let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.35;
-        let searchImgParentHeight = document.getElementById("search_btn").offsetHeight*0.5;
-        this.getImageResized("search_img", searchImgParentWidth, searchImgParentHeight, require("@/assets/images/search_spyglass.png"));
+        //let customLogoParentHeight = document.getElementById("logo").offsetHeight*0.65;
+        this.getImageResized("custom_logo", customLogoParentWidth, undefined, require("@/assets/images/custom_logo.png"));
+        //let searchImgParentWidth = document.getElementById("search_btn").offsetWidth*0.35;
+        //let searchImgParentHeight = document.getElementById("search_btn").offsetHeight*0.5;
+        this.getImageResized("search_img", undefined, undefined, require("@/assets/images/search.svg"));
         //let cartImgParentWidth = document.getElementById("cart").offsetWidth;
-        let cartImgParentHeight = document.getElementById("cart").offsetHeight*0.4;
+        let cartImgParentHeight = document.getElementById("cart").offsetHeight*0.40;
         this.getImageResized("cart_img", undefined, cartImgParentHeight, require("@/assets/images/cart.jpeg"));
     },
 
@@ -173,6 +99,10 @@ export default {
                     canvas.height = (img.naturalHeight * w) / img.naturalWidth;
                 } else {
                     canvas.height = h;
+                }
+                if(h == undefined && w == undefined) {
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
                 }
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 
@@ -198,6 +128,10 @@ export default {
 </script>  
 
 
+
+
+
+
 <style lang="scss" scoped>
 // DEBUG
 $debug: true;
@@ -212,11 +146,6 @@ div {
     }
 }
 
-</style>
-
-
-<!-- 
-    <style lang="scss" scoped>
     
 @mixin font() {
     font-family: 'Roboto', sans-serif;
@@ -303,7 +232,7 @@ div {
 #r2 {
     grid-area: r2;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 30% 50% 20%;
     grid-template-rows: 1fr;
     grid-template-areas: "logo search cart";
     position: relative;
@@ -336,7 +265,7 @@ div {
     font-size: 16px;
     height: 100%;
     width: 100%;
-    color: #ffffff;
+    color: #000000;
     border: none;
     padding-left: 10px;
     &:focus {
@@ -364,7 +293,7 @@ div {
 #cart {
     grid-area: cart;
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 90% 10%;
     grid-template-rows: 1fr;
     grid-template-areas: "cart_img cart_count";
     z-index: 1;
@@ -377,8 +306,38 @@ div {
     left: 60%;
     z-index: 1;
     border-radius: 100%;
-    border: 4px solid #c02000;
+    border: 6px solid #c02000;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: #c02000;
+    }
+
+    &:focus {
+        background-color: #691200;
+        outline: none;
+    }
 }
 
+#cart_count {
+    grid-area: cart_count;
+    position: relative;
+    top: 70%;
+    left: 0%;
+    z-index: 2;
+    height: 30px;
+    width: 30px;
+    background-color: #c02000;
+    border-radius: 100%;
+    border: 4px solid #c02000;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 2px;
+    margin-left: -100%;
+}
 </style>
--->
