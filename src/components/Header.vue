@@ -36,7 +36,7 @@
                     <div id="r2c2r1c1">
                         <div id="menu">
                             <router-link to="menu">
-                                <button id="menu_btn">Página de Entrada</button>
+                                <button id="menu_btn">Início</button>
                             </router-link>
                         </div>
                     </div>
@@ -114,11 +114,12 @@ export default {
         return {
             userLoggedIn: false,
             showAccountDropDown: false,
-            cartCount: 0,
             displayCart: false,
+            categories: [],
+            cartCount: 0,
             window: {
-                width: 500,
-                height: 500,
+                width: 0,
+                height: 0,
             },
             showContacts: false,
         }
@@ -518,7 +519,6 @@ div {
     grid-area: cart_img;
     z-index: 1;
     border-radius: 100%;
-    border: 6px solid #c02000;
     box-shadow: #000000 1px 1px 1px;
     margin-top: 5;
     margin-left: 0;
