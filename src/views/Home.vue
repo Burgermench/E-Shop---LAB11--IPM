@@ -206,9 +206,9 @@ $button_height: 32vh;
 #msg1 {
 	//text centered
 	position: fixed;
-	margin-left: 30vw;
-	margin-top: 25vh;
-	color: black;
+	margin-left: 20vw;
+	margin-top: 22vh;
+	color: white;
 	//give the text some shadow
 	text-shadow: 1px 1px 1px #000;
 	z-index: 0;
@@ -219,7 +219,7 @@ $button_height: 32vh;
 	position: fixed;
 	margin-left: 53vw;
 	margin-top: 70vh;
-	color:black;
+	color:white;
 	//give the text some shadow
 	text-shadow: 1px 1px 1px #000;
 	z-index: 0;

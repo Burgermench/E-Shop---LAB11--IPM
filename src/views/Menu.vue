@@ -1,13 +1,15 @@
 <template>
 	<div>
-		<Header/>
-			<div class="content-wrapper">
-				<img id="bckg_img">	
+		<div id="content-wrapper">
+			<keep-alive>
+				<canvas id="bckg_img"></canvas>	
+			</keep-alive>
+			<Header/>
 
 
 
-			</div>
-		<Footer/>
+			<Footer/>
+		</div>
 	</div>
 </template>
 
@@ -18,27 +20,87 @@ import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
 
 export default {
-    showModal: true,
+	name: 'Menu',
+	showModal: true,
     components: {
 		Footer,
         Header
 	},
-	data() {
+	
+	data: () => {
 		return {
+			window: {
+				width: 0,
+				height: 0,
+			},
 			products: [],
 		}
 	},
+
+	watch: {
+		window: {
+			handler: function () {
+				this.resizeWindow();
+				this.getImageResized("bckg_img", this.window.width, this.window.height, require('@/assets/images/background_white_pattern_triangles.png'));
+			},
+		deep: true,
+		},
+	},
+
+	created() {
+		window.addEventListener('resizeWindow', this.handleResizeWindow);
+	},
+
 	mounted() {
-		document.getElementById('bckg_img').src = require('@/assets/images/background_white_pattern_triangles.png');
+		this.resizeWindow();
+		this.getImageResized("bckg_img", this.window.width, this.window.height, require('@/assets/images/background_white_pattern_triangles.png'));
 	},
+
+	destroyed() {
+		window.removeEventListener('resizeWindow', this.handleResizeWindow);
+	},
+
 	methods: {
-	
+		getImageResized(elementId, w, h, source) {
+			var img = new Image(),
+				canvas = document.getElementById(elementId),
+				ctx = canvas.getContext("2d");
+			img.onload = () => {
+				if (w == undefined) {
+					canvas.width = (img.naturalWidth * h) / img.naturalHeight;
+				} else {
+					canvas.width = w;
+				}
+				if (h == undefined) {
+					canvas.height = (img.naturalHeight * w) / img.naturalWidth;
+				} else {
+					canvas.height = h;
+				}
+				if (h == undefined && w == undefined) {
+					canvas.width = img.naturalWidth;
+					canvas.height = img.naturalHeight;
+				}
+				ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+			};
+			img.src = source;
+			return img;
+		},
+
+		resizeWindow() {
+			this.window.width = window.innerWidth;
+			this.window.height = window.innerHeight;
+		},
+
+		handleResizeWindow() {
+			this.resizeWindow();
+		},
 	},
-    computed: {
+	
+	computed: {
 
     },
 }
-
 </script>
 
 

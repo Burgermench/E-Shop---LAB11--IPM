@@ -24,7 +24,10 @@
             <!-- logo -->
             <div id="r2c1">
                 <div id="logo">
-                    <canvas id="custom_logo"></canvas>
+                    <canvas id="custom_logo"
+                        type="button"
+                        @click = "$router.push('/')">>
+                    </canvas>
                 </div>
             </div>
 
@@ -35,9 +38,10 @@
                     <!-- menu -->
                     <div id="r2c2r1c1">
                         <div id="menu">
-                            <router-link to="menu">
-                                <button id="menu_btn">Início</button>
-                            </router-link>
+                            <button id="menu_btn"
+                                @click = "$router.push('/menu')">
+                                Início
+                            </button>
                         </div>
                     </div>
 
