@@ -21,7 +21,7 @@
         state.categories = categories
     },
 
-    },
+  },
   actions: {
     async getCategoriesFromDB({commit}) {
             try {
