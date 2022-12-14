@@ -1,13 +1,16 @@
 <template>
 	<div>
 		<div id="content-wrapper">
-			<canvas id="bckg_img"></canvas>
 			<Header />
+			<div id="r1">
+				<div id="r1c1"></div>
+				<div id="r1c2">
 
-
-
-			<Footer />
+				</div>
+				<div id="r1c3"></div>
+			</div>
 		</div>
+		<Footer />
 	</div>
 </template>
 
@@ -83,12 +86,34 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+/* DEBUG */
+$debug: false;
+
+@mixin debug() {
+	border-style: dashed;
+	border-color: red;
+	border-width: 1px;
+}
+
+div {
+	@if $debug {
+		@include debug();
+	}
+}
+
+@mixin font() {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+
 #content-wrapper {
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;
 	color: #000;
+	background-image: url('~@/assets/images/background_white_pattern_triangles.png');
 }
 
 #bckg_img {
@@ -96,5 +121,33 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+#r1 {
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: 5% auto 5%;
+	grid-template-rows: 100vh;
+	grid-template-areas: 'r1c1 r1c2 r1c3';
+}
+
+#r1c1 {
+	grid-area: r1c1;
+	//background color is a gradient 
+	//from left to right
+	//from half transparent grey to full grey
+	background: linear-gradient(to left, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
+}
+
+#r1c2 {
+	grid-area: r1c2;
+	background-color: rgba(100, 100, 100, 0.5);
+}
+
+#r1c3 {
+	grid-area: r1c3;
+	background-color: transparent;
+	background: linear-gradient(to right, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
 }
 </style>

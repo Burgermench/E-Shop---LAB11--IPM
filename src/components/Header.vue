@@ -320,6 +320,8 @@ div {
     grid-template-rows: 100%;
     grid-template-columns: auto auto auto;
     grid-template-areas: "r2c1 r2c2 r2c3";
+    //gradient grey half transparent to bottom dark grey color
+    background-image: linear-gradient(rgba(100, 100, 100, 0.5), rgb(50, 50, 50));
 }
 
 /* ROW 2 COLUMN 1 */

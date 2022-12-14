@@ -47,7 +47,6 @@ div {
     grid-template-columns: 50% 50%;
     grid-template-areas: "c1 c2";
     position: relative;
-    background-color: darkgrey;
 }
 
 #c1 {
@@ -56,6 +55,8 @@ div {
     padding-top: 5px;
     padding-left: 20px;
     font-size: 16px;
+    background-color: grey;
+    z-index: 3;
 }
 
 #c2 {
@@ -64,5 +65,7 @@ div {
     padding-top: 5px;
     padding-right: 20px;
     font-size: 16px;
+    background-color: grey;
+    z-index: 3;
 }
 </style>
