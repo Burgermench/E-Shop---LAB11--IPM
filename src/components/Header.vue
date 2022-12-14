@@ -57,8 +57,8 @@
                         <div id="categories_dropdown">
                             <div v-if="displayCaregories === true">
                                 <div v-for="category in categories" :key="category.id">
-                                    <button class="category_dropdown_item"
-                                        @click = "$router.push('/menu/:' + category.id)">
+                                    <button class="categories_dropdown_item"
+                                        @click = "$router.push('/menu/:' + category.name)">
                                         {{ category.name }}
                                     </button>
                                 </div>
@@ -119,7 +119,6 @@
                 </div>
             </div>
         </div>
-            
     </nav>
 </template>
 
@@ -233,7 +232,7 @@ export default {
 
 <style lang="scss" scoped>
 /* DEBUG */
-$debug: true;
+$debug: false;
 @mixin debug() {
     border-style: dashed;
     border-color: red;
@@ -250,7 +249,7 @@ div {
     font-style: normal;
 }
 
-/* NAVBAR */
+/* "NAVBAR" ...lol */
 #content-wrapper {
     @include font();
     width: 100%;
@@ -423,13 +422,12 @@ div {
     position: absolute;
     width: auto;
     height: auto;
-    background-color: transparent;
+    background-color: darkgrey;
     z-index: 4;
     margin-top: 45px;
     text-shadow: 1px 1px 1px #000000;
-    color: white;
 }
-#categories_dropdown_item {
+.categories_dropdown_item {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
@@ -442,7 +440,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 11px;
+        font-size: 14px;
     }
     &:focus {
         outline: none;

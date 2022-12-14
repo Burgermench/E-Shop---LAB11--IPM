@@ -35,8 +35,8 @@ export default {
 	data() {
 		return {
 			window: {
-				width: 50,
-				height: 50,
+				width: 0,
+				height: 0,
 			},
 			msg: 'Tap the cpu to procede...',
 		}
