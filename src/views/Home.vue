@@ -43,7 +43,7 @@ export default {
 	},
 
 	created() {
-		console.clear();
+		console.log("Home created");
 		window.addEventListener('resize', this.handleResize);
 	},
 

@@ -27,7 +27,7 @@ export default {
         Header
 	},
 	
-	data: () => {
+	data() {
 		return {
 			window: {
 				width: 0,
@@ -48,6 +48,7 @@ export default {
 	},
 
 	created() {
+		console.log("Menu created");
 		window.addEventListener('resizeWindow', this.handleResizeWindow);
 	},
 

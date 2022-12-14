@@ -7,8 +7,8 @@
   * Author:  João Cardoso
   * Date:    2022-12-07
  
-  * URL:
-  * GIT:
+  * URL: http://daw.deei.fct.ualg.pt/~a61149/LAB11/dist
+  * GIT: https://github.com/Burgermench/LAB11
 
 */
 

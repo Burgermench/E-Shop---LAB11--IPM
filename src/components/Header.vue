@@ -130,6 +130,7 @@ export default {
     },
 
     created() {
+        console.log("Header created");
         window.addEventListener('resizeWindow', this.handleResizeWindow);
     },
     
@@ -151,6 +152,12 @@ export default {
     },
 
     methods: {
+        getCategories() {
+            this.categories = this.$store.getters.getCategories;
+        },
+        addCategories() {
+
+        },
         getImageResized(elementId, w, h, source) {
             var img = new Image(),
                 canvas = document.getElementById(elementId),

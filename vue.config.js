@@ -1,8 +1,6 @@
 // vue.config.js
 module.exports = {
-  publicPath: '/LAB11/dist',
+  publicPath: "/~a61149/LAB11/dist/",
 
-  transpileDependencies: [
-    'vuetify'
-  ]
-}
+  transpileDependencies: ["vuetify"],
+};
