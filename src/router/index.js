@@ -16,7 +16,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/menu",
+    path: "/menu/:categoryId?",
     component: Menu,
   },
   {

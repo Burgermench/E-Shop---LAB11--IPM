@@ -48,7 +48,21 @@
                     <!-- categories -->
                     <div id="r2c2r1c2">
                         <div id="categories">
-                            <button id="categories_btn">Categorias</button>
+                            <button id="categories_btn"
+                                @click = "displayCaregories = !displayCaregories"
+                                >
+                                Categorias
+                            </button>
+                        </div>
+                        <div id="categories_dropdown">
+                            <div v-if="displayCaregories === true">
+                                <div v-for="category in categories" :key="category.id">
+                                    <button class="category_dropdown_item"
+                                        @click = "$router.push('/menu/:' + category.id)">
+                                        {{ category.name }}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -119,7 +133,15 @@ export default {
             userLoggedIn: false,
             showAccountDropDown: false,
             displayCart: false,
-            categories: [],
+            displayCaregories: false,
+            categories: [
+                        // {
+                        //"id":"1",
+                        //"name":"Pizza",
+                        //"description":"NULL",
+                        //"image":"NULL",
+                        //}
+                        ],
             cartCount: 0,
             window: {
                 width: 0,
@@ -132,6 +154,7 @@ export default {
     created() {
         console.log("Header created");
         window.addEventListener('resizeWindow', this.handleResizeWindow);
+        this.fetchCategories();
     },
     
     mounted() {
@@ -152,11 +175,14 @@ export default {
     },
 
     methods: {
+        async fetchCategories() {
+            if (await this.$store.dispatch('categories/getCategoriesFromDB')) {
+                this.categories = this.$store.getters['categories/getCategories'];
+            }
+        },
         getCategories() {
             this.categories = this.$store.getters.getCategories;
-        },
-        addCategories() {
-
+            console.log("we get the following categories: " + this.categories);
         },
         getImageResized(elementId, w, h, source) {
             var img = new Image(),
@@ -393,6 +419,35 @@ div {
         outline: none;
     }
 }
+#categories_dropdown{
+    position: absolute;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    z-index: 4;
+    margin-top: 45px;
+    text-shadow: 1px 1px 1px #000000;
+    color: white;
+}
+#categories_dropdown_item {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "account_dropdown_item";
+    background-color: darkgrey;
+    width: 100%;
+    height: 100%;
+    &:hover {
+        cursor: pointer;
+        background-color: grey;
+    }
+    &:active {
+        font-size: 11px;
+    }
+    &:focus {
+        outline: none;
+    }
+}
 
 /* ROW 2 COLUMN 2 ROW 1 COLUMN 3 */
 #r2c2r1c3 {
@@ -432,7 +487,6 @@ div {
         outline: none;
     }
 }
-
 #account_dropdown {
     position: absolute;
     width: auto;
@@ -443,7 +497,6 @@ div {
     text-shadow: 1px 1px 1px #000000;
     color: white;
 }
-
 .account_dropdown_item {
     display: grid;
     grid-template-rows: 1fr;

@@ -20,7 +20,6 @@ import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
 
 export default {
-	name: 'Menu',
 	showModal: true,
     components: {
 		Footer,
@@ -29,6 +28,7 @@ export default {
 	
 	data() {
 		return {
+			category: null,
 			window: {
 				width: 0,
 				height: 0,
