@@ -5,7 +5,9 @@
 			<div id="r1">
 				<div id="r1c1"></div>
 				<div id="r1c2">
-				
+					<div id="a-r1">
+
+					</div>
 				</div>
 				<div id="r1c3"></div>
 			</div>
@@ -65,7 +67,7 @@ export default {
 
 <style lang="scss" scoped>
 /* DEBUG */
-$debug: false;
+$debug: true;
 @mixin debug() {
 	border-style: dashed;
 	border-color: red;
@@ -102,6 +104,13 @@ div {
 	grid-template-columns: 5% auto 5%;
 	grid-template-rows: 100vh;
 	grid-template-areas: 'r1c1 r1c2 r1c3';
+	background: repeating-linear-gradient(
+		45deg,
+		rgba(100, 100, 100, 0.2),
+		rgba(100, 100, 100, 0.3) 10px,
+		rgba(100, 100, 100, 0.1) 10px,
+		rgba(100, 100, 100, 0.5) 20px
+	);
 }
 
 #r1c1 {
@@ -116,6 +125,8 @@ div {
 	grid-area: r1c2;
 	background-color: rgba(100, 100, 100, 0.5);
 }
+
+#a1-r1
 
 #r1c3 {
 	grid-area: r1c3;
