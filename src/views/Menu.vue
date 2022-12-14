@@ -126,7 +126,6 @@ div {
 	background-color: rgba(100, 100, 100, 0.5);
 }
 
-#a1-r1
 
 #r1c3 {
 	grid-area: r1c3;
