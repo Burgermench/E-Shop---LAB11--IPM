@@ -34,11 +34,6 @@ export default {
 		passwordConfirmation: '',
 		submitting: true,
 		error: true,
-		window: {
-			width: 0,
-			height: 0,
-		},
-		
       }
 	},
 	

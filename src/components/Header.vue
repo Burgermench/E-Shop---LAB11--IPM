@@ -112,11 +112,11 @@
                     </canvas>
 
                     <div id="cart_count" 
-                        v-if="cartCount > 0"
-                        >
+                        v-if="cartCount > 0">
                         <p> {{ cartCount }} </p>
                     </div>
                 </div>
+                <i style="text-align:left; margin-left: 10px; color: rgb(300,0,0,0.7); font-size: 15px; padding-bottom: 10px;">Carrinho</i>
             </div>
         </div>
     </nav>
@@ -481,7 +481,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 11px;
+        font-size: 14px;
     }
     &:focus {
         outline: none;
@@ -510,7 +510,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 11px;
+        font-size: 14px;
     }
     &:focus {
         outline: none;

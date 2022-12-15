@@ -16,7 +16,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/menu/:categoryId?",
+    path: "/menu/:categoryId?", //: means that it is a parameter, ? means that it is optional and can be null, and if we wanted more than one parameter we would use /:categoryId/:productId
     component: Menu,
   },
   {

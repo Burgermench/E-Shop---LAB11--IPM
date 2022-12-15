@@ -4,11 +4,42 @@
 			<Header/>
 			<div id="r1">
 				<div id="r1c1"></div>
-				<div id="r1c2">
-					<div id="a-r1">
 
+				<!-- CONTENT START -->
+				<div id="r1c2">
+					<!-- MENU STRUCTURE -->
+					<div v-if="categoryId === undefined">
+						<Landing/>
+					</div>
+					<!-- CATEGORY STRUCTURE -->
+					<div v-else-if="categoryId === ':Motherboards'">
+						<Motherboards/>
+					</div>
+					<div v-else-if="categoryId === ':Processadores'">
+						<Processors/>
+					</div>
+					<div v-else-if="categoryId === ':Graficas'">
+						<Graphics/>
+					</div>
+					<div v-else-if="categoryId === ':Alimentacoes'">
+						<PowerSupplies/>
+					</div>
+					<div v-else-if="categoryId === ':Torres'">
+						<Cases/>
+					</div>
+					<div v-else-if="categoryId === ':Rams'">
+						<Ram/>
+					</div>
+					<div v-else-if="categoryId === ':Armazenamento'">
+						<Storage/>
+					</div>
+					<div v-else>
+						<h1>Category not found</h1>
+						<h1>CategoryId: ({{categoryId}})</h1>
 					</div>
 				</div>
+				<!-- CONTENT END -->
+
 				<div id="r1c3"></div>
 			</div>
 		</div>
@@ -21,21 +52,34 @@
 <script>
 import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
+import Landing from '@/components/menu/Landing.vue'
+import Motherboards from '@/components/menu/categories/Motherboards.vue'
+import Processors from '@/components/menu/categories/Processors.vue'
+import Graphics from '@/components/menu/categories/Graphics.vue'
+import PowerSupplies from '@/components/menu/categories/PowerSupplies.vue'
+import Cases from '@/components/menu/categories/Cases.vue'
+import Ram from '@/components/menu/categories/Ram.vue'
+import Storage from '@/components/menu/categories/Storage.vue'
+
 
 export default {
 	showModal: false,
     components: {
 		Footer,
-        Header
+		Header,
+		Landing,
+		Motherboards,
+		Processors,
+		Graphics,
+		PowerSupplies,
+		Cases,
+		Ram,
+		Storage,
 	},
 	
 	data() {
 		return {
-			category: null,
-			window: {
-				width: 0,
-				height: 0,
-			},
+			categoryId: undefined,
 			products: [],
 		}
 	},
@@ -46,7 +90,14 @@ export default {
 	},
 
 	mounted() {
+		this.setCategoryId();
+	},
 
+	watch: {
+		'$route'(to, from) {
+			if(to !== from)
+				this.setCategoryId();
+		}
 	},
 
 	destroyed() {
@@ -54,7 +105,9 @@ export default {
 	},
 
 	methods: {
-
+		setCategoryId() {
+			this.categoryId = this.$route.params.categoryId;
+		},
 	},
 	
 	computed: {
@@ -67,7 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 /* DEBUG */
-$debug: true;
+$debug: false;
 @mixin debug() {
 	border-style: dashed;
 	border-color: red;
@@ -102,7 +155,7 @@ div {
 	width: 100%;
 	height: 100%;
 	grid-template-columns: 5% auto 5%;
-	grid-template-rows: 100vh;
+	grid-template-rows: auto;
 	grid-template-areas: 'r1c1 r1c2 r1c3';
 	background: repeating-linear-gradient(
 		45deg,
@@ -113,20 +166,22 @@ div {
 	);
 }
 
+/* RIGHT PADDING */
 #r1c1 {
 	grid-area: r1c1;
-	//background color is a gradient 
-	//from left to right
-	//from half transparent grey to full grey
 	background: linear-gradient(to left, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
 }
 
+/* CONTENT */
 #r1c2 {
 	grid-area: r1c2;
 	background-color: rgba(100, 100, 100, 0.5);
+	grid-template-columns: 100%;
+	grid-template-rows: auto auto auto auto auto;
+	grid-template-areas: 'content-r1' 'content-r2' 'content-r3' 'content-r4' 'content-r5';
 }
 
-
+/* LEFT PADDING */
 #r1c3 {
 	grid-area: r1c3;
 	background-color: transparent;
