@@ -6,7 +6,7 @@
 
         <div id="r2">
             <div id="r2c1">
-                <img id="kit1">
+                <img id="kit1" @click="$router.push('/menu/:Educacao')">
             </div>
         
             <div id="r2c2">
@@ -16,13 +16,13 @@
 
         <div id="r3">
             <div id="r3c1">
-                <img id="raspberry">
+                <img id="raspberry" @click="$router.push('/menu/:Educacao')">
             </div>
             <div id="r3c2">
                 <img id="certificado">
             </div>
             <div id="r3c3">
-                <img id="arduino">
+                <img id="arduino" @click="$router.push('/menu/:Educacao')">
             </div>
         </div>
 
@@ -92,27 +92,28 @@ export default {
             categories: [
                         // {
                         //"id":"1",
-                        //"name":"Pizza",
+                        //"name":"Motherboards",
                         //"description":"NULL",
-                        //"image":"NULL",
+                        //"image":"generic_motherboard.jpg",
                         //}
                         ],
             products: [
-            // {
-            //"cat_id":"SUSHI",
-            //"id":"1",
-            //"name":"Salmon Roll",
-            //"description":"Simply delicious!",
-            //"price":"18",
-            //"image":"04.jpg",
-            //"visible": "1",
-            //}
+                      // {
+                      //"cat_id":"SUSHI",
+                      //"id":"1",
+                      //"name":"Salmon Roll",
+                      //"description":"Simply delicious!",
+                      //"price":"18",
+                      //"image":"04.jpg",
+                      //"visible": "1",
+                      //}
                       ],
         }
     },
 
     created() {
-
+        this.getCategories();
+        this.getProducts();
     },
 
     mounted() {
@@ -138,6 +139,9 @@ export default {
     methods: {
         getCategories() {
             this.categories = this.$store.getters['categories/getCategories'];
+        },
+        getProducts() {
+            this.products = this.$store.getters['products/getProducts'];
         },
     },
 
@@ -235,6 +239,9 @@ div {
     grid-area: kit1;
     width: 100%;
     position: relative;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 #r2c2 {
@@ -254,6 +261,9 @@ div {
     grid-area: kit2;
     width: 100%;
     position: relative;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 /* ROW3 */
@@ -285,6 +295,9 @@ div {
     grid-area: raspberry;
     width: 100%;
     position: relative;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 #r3c2 {
@@ -324,6 +337,9 @@ div {
     grid-area: arduino;
     width: 100%;
     position: relative;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 /* ROW4 */
@@ -388,7 +404,7 @@ div {
     padding-top: 10px;
     grid-area: r5;
     width: 100%;
-    height: 350px;
+    height: 250px;
     position: relative;
 }
 
@@ -404,9 +420,9 @@ div {
 
 #d3carouselContainer {
     position: relative;
-    width: 320px;
+    width: 220px;
     margin: 100px auto 0 auto;
-    perspective: 1000px;
+    perspective: 100000px;
 }
 
 .carousel {
@@ -421,6 +437,7 @@ div {
     position: absolute;
     width: 300px;
     height: auto;
+    max-height: 180px;
     top: 20px;
     left: 10px;
     right: 10px;
@@ -524,5 +541,4 @@ span {
         transform: rotateY(-360deg);
     }
 }
-
 </style>

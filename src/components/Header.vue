@@ -88,6 +88,10 @@
                             <div v-if="userLoggedIn === true">
                                 <router-link to="/logout"><button class="account_dropdown_item">Logout</button></router-link>
                             </div>
+                            <!-- orders -->
+                            <div v-if="userLoggedIn === true">
+                                <router-link to="/myorders"><button class="account_dropdown_item">Perfil</button></router-link>
+                            </div>
                         </div>
                     </div>
                 </div>

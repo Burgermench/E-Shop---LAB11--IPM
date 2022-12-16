@@ -24,14 +24,11 @@
 
 
 
-
-
-
 <script>
 
 export default {
 	name: "Home",
-	// lulz
+
 	data() {
 		return {
 			window: {
@@ -61,7 +58,7 @@ export default {
 	methods: {
 		async fetchCategories() {
             await this.$store.dispatch('categories/getCategoriesFromDB')
-        },
+		},
 		async fetchProducts() {
 			await this.$store.dispatch('products/getProductsFromDB');
 		},
@@ -69,7 +66,6 @@ export default {
 			this.window.width = window.innerWidth;
 			this.window.height = window.innerHeight;
 		},
-
 		handleResize() {
 			this.resize();
 		},

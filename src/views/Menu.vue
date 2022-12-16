@@ -51,7 +51,6 @@
 
 <script>
 import Footer 		 from '@/components/Footer.vue'
-import Header 		 from '@/components/Header.vue'
 import Landing 		 from '@/components/menu/Landing.vue'
 import Motherboards  from '@/components/menu/categories/Motherboards.vue'
 import Processors 	 from '@/components/menu/categories/Processors.vue'
@@ -60,12 +59,12 @@ import PowerSupplies from '@/components/menu/categories/PowerSupplies.vue'
 import Educacao 	 from '@/components/menu/categories/Educacao.vue'
 import Ram 			 from '@/components/menu/categories/Ram.vue'
 import Storage 		 from '@/components/menu/categories/Storage.vue'
+import Header 		 from '@/components/Header.vue'
 
 
 export default {
     components: {
 		Footer,
-		Header,
 		Landing,
 		Motherboards,
 		Processors,
@@ -74,6 +73,7 @@ export default {
 		Educacao,
 		Ram,
 		Storage,
+		Header,
 	},
 	
 	data() {
