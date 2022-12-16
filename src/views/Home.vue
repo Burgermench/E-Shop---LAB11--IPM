@@ -38,12 +38,13 @@ export default {
 				width: 0,
 				height: 0,
 			},
-			msg: 'Tap the cpu to procede...',
 		}
 	},
 
 	created() {
-		console.log("Home created");
+		console.clear();
+		this.fetchCategories();
+		this.fetchProducts();
 		window.addEventListener('resize', this.handleResize);
 	},
 
@@ -58,10 +59,15 @@ export default {
 	},
 
 	methods: {
+		async fetchCategories() {
+            await this.$store.dispatch('categories/getCategoriesFromDB')
+        },
+		async fetchProducts() {
+			await this.$store.dispatch('products/getProductsFromDB');
+		},
 		resize() {
 			this.window.width = window.innerWidth;
 			this.window.height = window.innerHeight;
-			console.log(this.window);
 		},
 
 		handleResize() {

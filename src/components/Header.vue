@@ -153,7 +153,7 @@ export default {
     created() {
         console.log("Header created");
         window.addEventListener('resizeWindow', this.handleResizeWindow);
-        this.fetchCategories();
+        this.getCategories();
     },
     
     mounted() {
@@ -174,13 +174,8 @@ export default {
     },
 
     methods: {
-        async fetchCategories() {
-            if (await this.$store.dispatch('categories/getCategoriesFromDB')) {
-                this.categories = this.$store.getters['categories/getCategories'];
-            }
-        },
         getCategories() {
-            this.categories = this.$store.getters.getCategories;
+            this.categories = this.$store.getters['categories/getCategories'];
             console.log("we get the following categories: " + this.categories);
         },
         getImageResized(elementId, w, h, source) {

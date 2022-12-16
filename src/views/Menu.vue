@@ -63,7 +63,6 @@ import Storage 		 from '@/components/menu/categories/Storage.vue'
 
 
 export default {
-	showModal: false,
     components: {
 		Footer,
 		Header,
@@ -80,11 +79,9 @@ export default {
 	data() {
 		return {
 			categoryId: undefined,
-			products: [],
 		}
 	},
 
-	
 	created() {
 
 	},

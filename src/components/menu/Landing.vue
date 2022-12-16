@@ -89,7 +89,25 @@
 export default {
     data() {
         return {
-            products: [],
+            categories: [
+                        // {
+                        //"id":"1",
+                        //"name":"Pizza",
+                        //"description":"NULL",
+                        //"image":"NULL",
+                        //}
+                        ],
+            products: [
+            // {
+            //"cat_id":"SUSHI",
+            //"id":"1",
+            //"name":"Salmon Roll",
+            //"description":"Simply delicious!",
+            //"price":"18",
+            //"image":"04.jpg",
+            //"visible": "1",
+            //}
+                      ],
         }
     },
 
@@ -105,18 +123,25 @@ export default {
         document.getElementById('raspberry').src = require('@/assets/images/landing_page/raspberry.jpg');
         document.getElementById('certificado').src = require('@/assets/images/landing_page/certificado.jpg');
         document.getElementById('arduino').src = require('@/assets/images/landing_page/arduino.jpg');
-        document.getElementById('caroussel_arduino').src = require('@/assets/images/landing_page/kids_arduino.jpg');
+        // caroussel
         document.getElementById('caroussel_logo').src = require('@/assets/images/custom_logo.png');
         document.getElementById('caroussel_media').src = require('@/assets/images/landing_page/social_media.png');
         document.getElementById('caroussel_motherboard').src = require('@/assets/images/landing_page/generic_motherboard.jpg');
-        document.getElementById('caroussel_graphicsCard').src = require('@/assets/images/landing_page/generic_graphicsCard.jpg');
         document.getElementById('caroussel_processor').src = require('@/assets/images/landing_page/generic_processor.jpg');
+        document.getElementById('caroussel_graphicsCard').src = require('@/assets/images/landing_page/generic_graphicsCard.jpg');
         document.getElementById('caroussel_supply').src = require('@/assets/images/landing_page/generic_supply.jpg');
+        document.getElementById('caroussel_arduino').src = require('@/assets/images/landing_page/kids_arduino.jpg');
         document.getElementById('caroussel_ram').src = require('@/assets/images/landing_page/generic_rams.jpg');
         document.getElementById('caroussel_storage').src = require('@/assets/images/landing_page/generic_storage.jpg');
     },
 
     methods: {
+        getCategories() {
+            this.categories = this.$store.getters['categories/getCategories'];
+        },
+    },
+
+    computed: {
 
     }
 }
