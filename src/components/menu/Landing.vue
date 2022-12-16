@@ -69,15 +69,15 @@
             <div id="d3caroussel">
                 <div id="d3carouselContainer">
                     <div class="carousel">
-                        <div class="carousel__face"><span>This is something</span></div>
-                        <div class="carousel__face"><span>Very special</span></div>
-                        <div class="carousel__face"><span>Special is the key</span></div>
-                        <div class="carousel__face"><span>For you</span></div>
-                        <div class="carousel__face"><span>Just give it</span></div>
-                        <div class="carousel__face"><span>A try</span></div>
-                        <div class="carousel__face"><span>And see</span></div>
-                        <div class="carousel__face"><span>How IT Works</span></div>
-                        <div class="carousel__face"><span>Woow</span></div>
+                        <div class="carousel__face"><img id="caroussel_arduino"></div>
+                        <div class="carousel__face"><img id="caroussel_motherboard"></div>
+                        <div class="carousel__face"><img id="caroussel_graphicsCard"></div>
+                        <div class="carousel__face"><img id="caroussel_processor"></div>
+                        <div class="carousel__face"><img id="caroussel_supply"></div>
+                        <div class="carousel__face"><img id="caroussel_ram"></div>
+                        <div class="carousel__face"><img id="caroussel_storage"></div>
+                        <div class="carousel__face"><img id="caroussel_logo"></div>
+                        <div class="carousel__face"><img id="caroussel_media"></div>
                     </div>
                 </div>
             </div>
@@ -102,12 +102,14 @@ export default {
     },
 
     mounted() {
+        // IMAGES
         document.getElementById('faixaNatalicia').src = require('@/assets/images/landing_page/Faixa_Natalicia.jpg');
         document.getElementById('kit1').src = require('@/assets/images/landing_page/kit1.jpg');
         document.getElementById('kit2').src = require('@/assets/images/landing_page/kit2.jpg');
         document.getElementById('raspberry').src = require('@/assets/images/landing_page/raspberry.jpg');
         document.getElementById('certificado').src = require('@/assets/images/landing_page/certificado.jpg');
         document.getElementById('arduino').src = require('@/assets/images/landing_page/arduino.jpg');
+        document.getElementById('caroussel_arduino').src = require('@/assets/images/landing_page/kids_arduino.jpg');
     },
 
     methods: {
@@ -122,7 +124,7 @@ export default {
 
 <style lang="scss" scoped>
 /* DEBUG */
-$debug: false;
+$debug: true;
 
 @mixin debug() {
     border-style: dashed;
@@ -404,48 +406,84 @@ span {
 }
 
 .carousel__face:nth-child(1) {
-    background-image: url("https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(0deg) translateZ(430px);
 }
 
+#caroussel_arduino {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(2) {
-    background-image: url("https://images.pexels.com/photos/1258865/pexels-photo-1258865.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(40deg) translateZ(430px);
 }
 
+#caroussel_motherboard {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(3) {
-    background-image: url("https://images.pexels.com/photos/808466/pexels-photo-808466.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(80deg) translateZ(430px);
 }
 
+#caroussel_graphicsCard {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(4) {
-    background-image: url("https://images.pexels.com/photos/1394841/pexels-photo-1394841.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(120deg) translateZ(430px);
 }
 
+#caroussel_processor {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(5) {
-    background-image: url("https://images.pexels.com/photos/969679/pexels-photo-969679.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(160deg) translateZ(430px);
 }
 
+#caroussel_supply {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(6) {
-    background-image: url("https://images.pexels.com/photos/1834400/pexels-photo-1834400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(200deg) translateZ(430px);
 }
 
+#caroussel_ram {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(7) {
-    background-image: url("https://images.pexels.com/photos/1415268/pexels-photo-1415268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(240deg) translateZ(430px);
 }
 
+#caroussel_storage {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(8) {
-    background-image: url("https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(280deg) translateZ(430px);
 }
 
+#caroussel_logo {
+    width: inherit;
+    height: inherit;
+}
+
 .carousel__face:nth-child(9) {
-    background-image: url("https://images.pexels.com/photos/1175135/pexels-photo-1175135.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     transform: rotateY(320deg) translateZ(430px);
+}
+
+#caroussel_media {
+    width: inherit;
+    height: inherit;
 }
 
 @keyframes rotate360 {
@@ -457,4 +495,5 @@ span {
         transform: rotateY(-360deg);
     }
 }
+
 </style>

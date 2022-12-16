@@ -24,8 +24,8 @@
 					<div v-else-if="categoryId === ':Alimentacoes'">
 						<PowerSupplies/>
 					</div>
-					<div v-else-if="categoryId === ':Torres'">
-						<Cases/>
+					<div v-else-if="categoryId === ':Educacao'">
+						<Educacao/>
 					</div>
 					<div v-else-if="categoryId === ':Rams'">
 						<Ram/>
@@ -50,16 +50,16 @@
 
 
 <script>
-import Footer from '@/components/Footer.vue'
-import Header from '@/components/Header.vue'
-import Landing from '@/components/menu/Landing.vue'
-import Motherboards from '@/components/menu/categories/Motherboards.vue'
-import Processors from '@/components/menu/categories/Processors.vue'
-import Graphics from '@/components/menu/categories/Graphics.vue'
+import Footer 		 from '@/components/Footer.vue'
+import Header 		 from '@/components/Header.vue'
+import Landing 		 from '@/components/menu/Landing.vue'
+import Motherboards  from '@/components/menu/categories/Motherboards.vue'
+import Processors 	 from '@/components/menu/categories/Processors.vue'
+import Graphics 	 from '@/components/menu/categories/Graphics.vue'
 import PowerSupplies from '@/components/menu/categories/PowerSupplies.vue'
-import Cases from '@/components/menu/categories/Cases.vue'
-import Ram from '@/components/menu/categories/Ram.vue'
-import Storage from '@/components/menu/categories/Storage.vue'
+import Educacao 	 from '@/components/menu/categories/Educacao.vue'
+import Ram 			 from '@/components/menu/categories/Ram.vue'
+import Storage 		 from '@/components/menu/categories/Storage.vue'
 
 
 export default {
@@ -72,7 +72,7 @@ export default {
 		Processors,
 		Graphics,
 		PowerSupplies,
-		Cases,
+		Educacao,
 		Ram,
 		Storage,
 	},
