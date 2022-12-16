@@ -69,25 +69,21 @@
             <div id="d3caroussel">
                 <div id="d3carouselContainer">
                     <div class="carousel">
-                        <div class="carousel__face"><img id="caroussel_arduino"></div>
-                        <div class="carousel__face"><img id="caroussel_motherboard"></div>
-                        <div class="carousel__face"><img id="caroussel_graphicsCard"></div>
-                        <div class="carousel__face"><img id="caroussel_processor"></div>
-                        <div class="carousel__face"><img id="caroussel_supply"></div>
-                        <div class="carousel__face"><img id="caroussel_ram"></div>
-                        <div class="carousel__face"><img id="caroussel_storage"></div>
-                        <div class="carousel__face"><img id="caroussel_logo"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Educacao')"><img id="caroussel_arduino"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/')"><img id="caroussel_logo"></div>
                         <div class="carousel__face"><img id="caroussel_media"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Motherboards')"><img id="caroussel_motherboard"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Graficas')"><img id="caroussel_graphicsCard"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Processadores')"><img id="caroussel_processor"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Alimentacoes')"><img id="caroussel_supply"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Rams')"><img id="caroussel_ram"></div>
+                        <div class="carousel__face" type="button" @click="$router.push('/menu/:Armazenamento')"><img id="caroussel_storage"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
-
-
-
 
 <script>
 export default {
@@ -110,6 +106,14 @@ export default {
         document.getElementById('certificado').src = require('@/assets/images/landing_page/certificado.jpg');
         document.getElementById('arduino').src = require('@/assets/images/landing_page/arduino.jpg');
         document.getElementById('caroussel_arduino').src = require('@/assets/images/landing_page/kids_arduino.jpg');
+        document.getElementById('caroussel_logo').src = require('@/assets/images/custom_logo.png');
+        document.getElementById('caroussel_media').src = require('@/assets/images/landing_page/social_media.png');
+        document.getElementById('caroussel_motherboard').src = require('@/assets/images/landing_page/generic_motherboard.jpg');
+        document.getElementById('caroussel_graphicsCard').src = require('@/assets/images/landing_page/generic_graphicsCard.jpg');
+        document.getElementById('caroussel_processor').src = require('@/assets/images/landing_page/generic_processor.jpg');
+        document.getElementById('caroussel_supply').src = require('@/assets/images/landing_page/generic_supply.jpg');
+        document.getElementById('caroussel_ram').src = require('@/assets/images/landing_page/generic_rams.jpg');
+        document.getElementById('caroussel_storage').src = require('@/assets/images/landing_page/generic_storage.jpg');
     },
 
     methods: {
@@ -124,7 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 /* DEBUG */
-$debug: true;
+$debug: false;
 
 @mixin debug() {
     border-style: dashed;
@@ -359,7 +363,7 @@ div {
     padding-top: 10px;
     grid-area: r5;
     width: 100%;
-    height: 380px;
+    height: 350px;
     position: relative;
 }
 
@@ -391,7 +395,7 @@ div {
 .carousel__face {
     position: absolute;
     width: 300px;
-    height: 187px;
+    height: auto;
     top: 20px;
     left: 10px;
     right: 10px;
