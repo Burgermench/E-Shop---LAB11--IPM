@@ -31,7 +31,7 @@
 
 export default {
 	name: "Home",
-
+	// lulz
 	data() {
 		return {
 			window: {
