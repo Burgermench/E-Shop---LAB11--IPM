@@ -3,7 +3,7 @@
         <h1> {{category}} </h1>
         <div v-for="product in products" :key="product.id">
             <div class="product_click_to_add_to_basket" @click="addToBasket(product)">
-                <img class="product_image" :src="require('@/assets/images/products/' + /* transform category to all lower case */ category.toLowerCase() + '/' + product.image)" alt="product image">
+                <img class="product_image" :src="require('@/assets/images/products/' + category.toLowerCase() + '/' + product.image)" alt="product image">
                 <h3>{{ product.name }}</h3>
                 <p>Preço: {{ parseFloat(product.price) / 100 }}€</p>
                 <div v-if="product.visible == '0'">
@@ -47,7 +47,7 @@ export default {
 
     methods: {
         getProductsOfThisCategory() {
-            this.products = this.$store.state.products.products.filter(product => product.cat_id == "Educacao");
+            this.products = this.$store.state.products.products.filter(product => product.cat_id == this.category);
         },
         addToBasket(product) {
             if (product.visible == '1') {
