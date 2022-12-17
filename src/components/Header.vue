@@ -155,7 +155,6 @@ export default {
     },
 
     created() {
-        console.log("Header created");
         window.addEventListener('resizeWindow', this.handleResizeWindow);
         this.getCategories();
     },
@@ -180,7 +179,6 @@ export default {
     methods: {
         getCategories() {
             this.categories = this.$store.getters['categories/getCategories'];
-            console.log("we get the following categories: " + this.categories);
         },
         getImageResized(elementId, w, h, source) {
             var img = new Image(),
