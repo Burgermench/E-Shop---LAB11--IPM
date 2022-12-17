@@ -22,7 +22,7 @@
 export default {
     data() {
         return {
-            category: 'Graphics',
+            category: 'Graficas',
             products: [
                 // {...},...
                 // {

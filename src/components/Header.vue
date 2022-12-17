@@ -112,12 +112,29 @@
                         type="button"
                         @mouseover = "displayCart = true"
                         @mouseleave = "displayCart = false"
-                        @click = "$router.push('/basket')">
+                        @click = "$router.push('/basket')"
+                        >
                     </canvas>
 
                     <div id="cart_count" 
                         v-if="cartCount > 0">
                         <p> {{ cartCount }} </p>
+                    </div>
+                    
+                    <div v-if="displayCart == true">
+                        <div id="cart_dropdown">
+                            <div v-if="cartCount == 0">
+                                <p> O seu carrinho está vazio </p>
+                            </div>
+                            <div v-else>
+                                <div v-for="cartProduct in productsInCart" :key="cartProduct.id">
+                                    <p style="font-size: 10px; margin-top: 0; padding-top: 0; margin-bottom: 0; padding-bottom: 0;"> {{ associatedProduct(cartProduct.id).name }} </p>
+                                    <p style="font-size: 10px; margin-top: 0; padding-top: 0; margin-bottom: 0; padding-bottom: 0;"> quantidade: {{ cartProduct.quantity }}</p>
+                                    <p style="font-size: 10px; margin-top: 0; padding-top: 0; margin-bottom: 0; padding-bottom: 0;"> preço: {{ priceOf(associatedProduct(cartProduct.id),cartProduct.quantity) }} €</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <i style="text-align:left; margin-left: 10px; color: rgb(300,0,0,0.7); font-size: 15px; padding-bottom: 10px;">Carrinho</i>
@@ -150,14 +167,29 @@ export default {
                 width: 0,
                 height: 0,
             },
+            availableProducts: [],
             showContacts: false,
+            productsInCart: [],
         }
     },
 
     created() {
         window.addEventListener('resizeWindow', this.handleResizeWindow);
         this.getCategories();
+        this.getProducts();
     },
+
+
+    watch: {
+        $store: {
+            handler: function() {
+                this.cartCount = this.$store.getters['basket/getProducts'].length;
+                this.productsInCart = this.$store.getters['basket/getProducts'];
+            },
+            deep: true
+        }
+    },
+
     
     mounted() {
         this.resizeWindow();
@@ -174,6 +206,7 @@ export default {
 
     destroyed() {
         window.removeEventListener('resizeWindow', this.handleResizeWindow);
+        this.$store.commit('basket/clearBasket');
     },
 
     methods: {
@@ -214,10 +247,21 @@ export default {
         handleResizeWindow() {
             this.resizeWindow();
         },
+
+        getProducts() {
+            this.products = this.$store.getters['products/getProducts'];
+        },
+        associatedProduct(id) {
+            let product = this.products.find(product => product.id == id);
+            return product;
+        },
+        priceOf(product, quantity) {
+            return product.price/100 * quantity;
+        },
+
     },
 
     computed: {
-        
     },
 }
 </script>  
@@ -609,4 +653,16 @@ div {
     padding-top: 2px;
     box-shadow: #000000 1px 1px 1px;
 }
+
+#cart_dropdown {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    background-color: darkgrey;
+    z-index: 4;
+    margin-top: 10px;
+    font-size: 12px;
+    text-shadow: 1px 1px 1px #000000;
+}
+
 </style>
