@@ -8,34 +8,54 @@
 				<!-- CONTENT START -->
 				<div id="r1c2">
 					<!-- MENU STRUCTURE -->
-					<div v-if="categoryId === undefined">
+					<div v-if="Content === undefined">
 						<Landing/>
 					</div>
 					<!-- CATEGORY STRUCTURE -->
-					<div v-else-if="categoryId === ':Motherboards'">
+					<div v-else-if="Content === ':Motherboards'">
 						<Motherboards/>
 					</div>
-					<div v-else-if="categoryId === ':Processadores'">
+					<div v-else-if="Content === ':Processadores'">
 						<Processors/>
 					</div>
-					<div v-else-if="categoryId === ':Graficas'">
+					<div v-else-if="Content === ':Graficas'">
 						<Graphics/>
 					</div>
-					<div v-else-if="categoryId === ':Alimentacoes'">
+					<div v-else-if="Content === ':Alimentacoes'">
 						<PowerSupplies/>
 					</div>
-					<div v-else-if="categoryId === ':Educacao'">
+					<div v-else-if="Content === ':Educacao'">
 						<Educacao/>
 					</div>
-					<div v-else-if="categoryId === ':Rams'">
+					<div v-else-if="Content === ':Rams'">
 						<Ram/>
 					</div>
-					<div v-else-if="categoryId === ':Armazenamento'">
+					<div v-else-if="Content === ':Armazenamento'">
 						<Storage/>
 					</div>
+					<!-- USER STRUCTURE -->
+					<div v-else-if="Content === ':Login'">
+						<Login/>
+					</div>
+					<div v-else-if="Content === ':Register'">
+						<Register/>
+					</div>
+					<div v-else-if="Content == ':Logout'">
+						<Logout/>
+					</div>
+					<!-- ORDER STRUCTURE -->
+					<div v-else-if="Content === ':MyOrders'">
+						<MyOrders/>
+					</div>
+					<div v-else-if="Content === ':Basket'">
+						<Basket/>
+					</div>
+					<div v-else-if="Content === ':Checkout'">
+						<Checkout/>
+					</div>
 					<div v-else>
-						<h1>Category not found</h1>
-						<h1>CategoryId: ({{categoryId}})</h1>
+						<h1>Content not found</h1>
+						<h1>Content: ({{Content}})</h1>
 					</div>
 				</div>
 				<!-- CONTENT END -->
@@ -50,8 +70,12 @@
 
 
 <script>
-import Footer 		 from '@/components/Footer.vue'
-import Landing 		 from '@/components/menu/Landing.vue'
+//header and footer
+import Footer from '@/components/Footer.vue'
+import Header from '@/components/Header.vue'
+//landing page
+import Landing from '@/components/menu/Landing.vue'
+//categories
 import Motherboards  from '@/components/menu/categories/Motherboards.vue'
 import Processors 	 from '@/components/menu/categories/Processors.vue'
 import Graphics 	 from '@/components/menu/categories/Graphics.vue'
@@ -59,10 +83,18 @@ import PowerSupplies from '@/components/menu/categories/PowerSupplies.vue'
 import Educacao 	 from '@/components/menu/categories/Educacao.vue'
 import Ram 			 from '@/components/menu/categories/Ram.vue'
 import Storage 		 from '@/components/menu/categories/Storage.vue'
-import Header 		 from '@/components/Header.vue'
-
+//user stuff
+import Login    from '@/components/menu/Login.vue'
+import Register from '@/components/menu/Register.vue'
+import Logout from '@/components/menu/Logout.vue'
+//ordering stuff 
+import Basket   from '@/components/menu/Basket.vue'
+import MyOrders from '@/components/menu/MyOrders.vue'
+import Checkout from '@/components/menu/Checkout.vue'
 
 export default {
+	name: 'Menu',
+
     components: {
 		Footer,
 		Landing,
@@ -74,11 +106,17 @@ export default {
 		Ram,
 		Storage,
 		Header,
+		Login,
+		Register,
+		Logout,
+		Basket,
+		MyOrders,
+		Checkout,
 	},
 	
 	data() {
 		return {
-			categoryId: undefined,
+			Content: undefined,
 		}
 	},
 
@@ -87,13 +125,13 @@ export default {
 	},
 
 	mounted() {
-		this.setCategoryId();
+		this.setContent();
 	},
 
 	watch: {
 		'$route'(to, from) {
 			if(to !== from)
-				this.setCategoryId();
+				this.setContent();
 		}
 	},
 
@@ -102,8 +140,9 @@ export default {
 	},
 
 	methods: {
-		setCategoryId() {
-			this.categoryId = this.$route.params.categoryId;
+		setContent() {
+			this.Content = this.$route.params.Content;
+			console.log("Menu content: " + this.Content);
 		},
 	},
 	
@@ -173,9 +212,7 @@ div {
 #r1c2 {
 	grid-area: r1c2;
 	background-color: rgba(100, 100, 100, 0.5);
-	grid-template-columns: 100%;
-	grid-template-rows: auto auto auto auto auto;
-	grid-template-areas: 'content-r1' 'content-r2' 'content-r3' 'content-r4' 'content-r5';
+	min-height: 100vh;
 }
 
 /* LEFT PADDING */

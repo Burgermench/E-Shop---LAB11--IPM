@@ -75,22 +75,38 @@
                                 Conta
                             </button>
                         </div>
+                        
                         <div v-if="showAccountDropDown === true" id="account_dropdown">
                             <!-- login -->
                             <div v-if="userLoggedIn === false">
-                                <router-link to="/login"><button class="account_dropdown_item">Entrar</button></router-link>
+                                <button class="account_dropdown_item"
+                                    @click = "$router.push('/menu/:Login')">
+                                    Entrar
+                                </button>
                             </div>
                             <!-- register -->
                             <div v-if="userLoggedIn === false">
-                                <router-link to="/register"><button class="account_dropdown_item">Registar</button></router-link>
+                                <button class="account_dropdown_item"
+                                    @click = "$router.push('/menu/:Register')"
+                                    >
+                                    Registar
+                                </button>
                             </div>
                             <!-- log out -->
                             <div v-if="userLoggedIn === true">
-                                <router-link to="/logout"><button class="account_dropdown_item">Logout</button></router-link>
+                                <button class="account_dropdown_item"
+                                    @click = "$router.push('/menu/:Logout')"
+                                    >
+                                    Logout
+                                </button>
                             </div>
                             <!-- orders -->
                             <div v-if="userLoggedIn === true">
-                                <router-link to="/myorders"><button class="account_dropdown_item">Perfil</button></router-link>
+                                <button class="account_dropdown_item"
+                                    @click = "$router.push('/menu/:MyOrders')"
+                                    >
+                                    Encomendas
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -112,7 +128,7 @@
                         type="button"
                         @mouseover = "displayCart = true"
                         @mouseleave = "displayCart = false"
-                        @click = "$router.push('/basket')"
+                        @click = "$router.push('/menu/:Basket')">
                         >
                     </canvas>
 
@@ -290,7 +306,6 @@ div {
     font-style: normal;
 }
 
-/* "NAVBAR" ...lol */
 #content-wrapper {
     @include font();
     width: 100%;

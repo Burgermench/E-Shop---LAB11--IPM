@@ -2,10 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Menu from "@/views/Menu.vue";
-import Basket from "@/views/Basket.vue";
-import Register from "@/views/Register.vue";
-import Login from "@/views/Login.vue";
-import MyOrders from "@/views/MyOrders.vue";
 import Message from "@/views/Message.vue";
 
 Vue.use(VueRouter);
@@ -16,24 +12,8 @@ const routes = [
     component: Home,
   },
   {
-    path: "/menu/:categoryId?", //: means that it is a parameter, ? means that it is optional and can be null, and if we wanted more than one parameter we would use /:categoryId/:productId
+    path: "/menu/:Content?", //: means that it is a parameter, ? means that it is optional and can be null, and if we wanted more than one parameter we would use /:categoryId/:productId
     component: Menu,
-  },
-  {
-    path: "/basket",
-    component: Basket,
-  },
-  {
-    path: "/register",
-    component: Register,
-  },
-  {
-    path: "/login",
-    component: Login,
-  },
-  {
-    path: "/myorders",
-    component: MyOrders,
   },
   {
     path: "/message",

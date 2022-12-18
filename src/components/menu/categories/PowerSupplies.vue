@@ -4,7 +4,7 @@
         <div v-for="product in products" :key="product.id">
             <div class="product_click_to_add_to_basket" @click="addToBasket(product)">
                 <img class="product_image"
-                    :src="require('@/assets/images/products/' + /* transform category to all lower case */ category.toLowerCase() + '/' + product.image)"
+                    :src="require('@/assets/images/products/' + category.toLowerCase() + '/' + product.image)"
                     alt="product image">
                 <h3>{{ product.name }}</h3>
                 <p>Preço: {{ parseFloat(product.price) / 100 }}€</p>
