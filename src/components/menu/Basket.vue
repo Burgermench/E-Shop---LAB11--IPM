@@ -9,6 +9,9 @@
 			<button @click="incrementProduct(item.id)">+</button>
 			<button @click="decrementProduct(item.id)">-</button>
 		</div>
+		<div>
+			<p>Total: {{ totalPrice() }} €</p>
+		</div>
 		<button @click="clearBasket()">Clear Basket</button>
 		<button @click="checkout()">Checkout</button>
 	</div>
@@ -29,6 +32,7 @@ export default {
 			categories: [],
 			products: [],
 			basket: [],
+			orders: [],
 		}
 	},
 
@@ -36,6 +40,7 @@ export default {
 		this.categories = this.$store.getters['categories/getCategories'];
 		this.products = this.$store.getters['products/getProducts'];
 		this.basket = this.$store.getters['basket/getProducts'];
+		this.orders = this.$store.getters['orders/getOrders'];
 	},
 
 	mounted() {
@@ -51,38 +56,72 @@ export default {
 			let product = this.products.find(product => product.id == id);
 			return product;
 		},
+
 		priceOf(product, quantity) {
 			return (product.price / 100 * quantity).toFixed(2);
 		},
+
 		incrementProduct(id) {
 			this.$store.commit('basket/incrementProduct', id);
 		},
+
 		decrementProduct(id) {
 			this.$store.commit('basket/decrementProduct', id);
 		},
+
 		checkout() {
-			if (this.userLoggedIn) {
-				let order = {
-					customer_id: this.user.id,
-					status_id: 1,
-					total: this.totalPrice,
-					order_items: this.basket.map(item => {
-						return {
-							product_id: item.id,
-							quantity: item.quantity,
-						}
-					}),
-				};
-				this.$store.dispatch('orders/addOrder', order);
-				this.clearBasket();
-			} else {
+			if (!this.userIsLogged) {
+				// back to the menu with you
 				this.$router.push('/menu');
 			}
+			this.createOrder()
 		},
+
+		createOrder() {
+			let order = {
+				customer_id: this.$store.getters['user/getUser'].id,
+				status_id: 1,
+				total: this.totalPrice() * 100,
+				order_items: []
+			};
+			this.basket.forEach(item => {
+				let product = this.associatedProduct(item.id);
+				order.order_items.push({
+					product_id: product.id,
+					name: product.name,
+					price: product.price,
+					quantity: item.quantity
+				});
+			});
+			this.$store.dispatch('orders/addOrder', order).then(success => {
+				if (success) {
+					alert("Order successfully created!")
+					this.clearBasket();
+					this.$router.push('/menu');
+				}
+			});
+		},
+
+		totalPrice() {
+			let total = 0;
+			this.basket.forEach(item => {
+				let product = this.associatedProduct1(item.id);
+				total += product.price/100 * item.quantity;
+			});
+			return total.toFixed(2);
+		},
+
+		associatedProduct1(id) {
+			return this.$store.getters['products/getProducts'].find(product => product.id == id);
+		},
+
+		userIsLogged: function() {
+			return this.$store.getters['user/getUser'].id !== undefined;
+		},
+
 		clearBasket() {
 			this.$store.commit('basket/clearBasket');
 			this.basket = this.$store.getters['basket/getProducts'];
-			console.log("basket has these items: " + this.basket);
 		},
 	},
 }

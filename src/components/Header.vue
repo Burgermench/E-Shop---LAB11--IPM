@@ -153,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <i style="text-align:left; margin-left: 10px; color: rgb(300,0,0,0.7); font-size: 15px; padding-bottom: 10px;">Carrinho</i>
+                <i style="text-align:left; margin-left: 10px; color: rgb(300,0,0,0.7); font-size: 15px; padding-bottom: 10px;">Finalizar</i>
             </div>
         </div>
     </nav>
@@ -199,8 +199,9 @@ export default {
     watch: {
         $store: {
             handler: function() {
-                this.cartCount = this.$store.getters['basket/getProducts'].length;
-                this.productsInCart = this.$store.getters['basket/getProducts'];
+                this.cartCount = this.$store.getters['basket/getProducts'].length
+                this.productsInCart = this.$store.getters['basket/getProducts']
+                this.userLoggedIn = this.loggedIn
             },
             deep: true
         }
@@ -278,6 +279,14 @@ export default {
     },
 
     computed: {
+        loggedIn: function () {
+            if (this.$store.getters['user/getUser'].name !== '' && this.$store.getters['user/getUser'].name !== undefined) {
+                return true
+            } else {
+                console.log("valid user previously unlogged: " + this.$store.getters['user/getUser'].name)
+                return false
+            }
+        },
     },
 }
 </script>  

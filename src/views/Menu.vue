@@ -50,9 +50,6 @@
 					<div v-else-if="Content === ':Basket'">
 						<Basket/>
 					</div>
-					<div v-else-if="Content === ':Checkout'">
-						<Checkout/>
-					</div>
 					<div v-else>
 						<h1>Content not found</h1>
 						<h1>Content: ({{Content}})</h1>
@@ -90,7 +87,6 @@ import Logout from '@/components/menu/Logout.vue'
 //ordering stuff 
 import Basket   from '@/components/menu/Basket.vue'
 import MyOrders from '@/components/menu/MyOrders.vue'
-import Checkout from '@/components/menu/Checkout.vue'
 
 export default {
 	name: 'Menu',
@@ -111,7 +107,6 @@ export default {
 		Logout,
 		Basket,
 		MyOrders,
-		Checkout,
 	},
 	
 	data() {

@@ -89,7 +89,7 @@ export default {
 				console.log("valid input, user with those credentials does not already exist, proceding")
 				this.addUser()
 			}
-			this.$router.push('/menu/:login')
+			this.$router.push('/menu/:Login')
 		},
 
 		async addUser() {

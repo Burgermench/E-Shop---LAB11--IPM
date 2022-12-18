@@ -1,29 +1,50 @@
 <template>
 	<div>
-
+		<h1>Login</h1>
+		<hr>
+		<form style="text-align: right; margin-right: 50vw;" @submit.prevent="handleSubmit">
+			<div>
+				<label style="position:relative;" for="name">Name</label>
+				<input style="position:absolute;" type="text" id="name" v-model="user.name"
+					placeholder="your username" required>
+			</div>
+			<div>
+				<label style="position:relative;" for="email">Email</label>
+				<input style="position:absolute;" type="email" id="email" v-model="user.email" placeholder="your e-mail" required>
+			</div>
+			<div>
+				<label style="position:relative;" for="password">Password</label>
+				<input style="position:absolute;" type="password" id="password" v-model="user.password"
+					placeholder="your password" required>
+			</div>
+			<div>
+				<button style="position:relative; margin-top: 10px;" type="submit">Login</button>
+			</div>
+		</form>
 	</div>
 </template>
 
-<script>
 
+<script>
 export default {
 	components: {
 
-	},   
+	},
 
 	data() {
-      return {	
-        user: {
-			email: '',
-			password: '',
-		},
-		submitting: false,
-		error: false,
-      }
-    },
+		return {
+			user: {
+				name: '',
+				email: '',
+				password: '',
+			},
+			submitting: false,
+			error: false,
+		}
+	},
 
 	created() {
-
+		console.clear()
 	},
 
 	mounted() {
@@ -33,16 +54,65 @@ export default {
 	destroyed() {
 
 	},
-	
+
 	methods: {
+		handleSubmit: function () {
+			this.submitting = true
+			if (this.invalidName || this.invalidPassword || this.invalidEmail) {
+				this.error = true
+				return
+			}
+			this.loginUser(this.user)
+		},
+
+		async loginUser(user) {
+			await this.$store.dispatch('user/loginUser', user).then(() => {
+				this.getOrdersFromDb()
+			})
+		},
+
+		async getOrdersFromDb() {
+			await this.$store.dispatch('orders/getMyOrdersFromDB').then(() => {
+				alert("Welcome back " + this.$store.getters['user/getUser'].name + "!")
+				this.$router.push('/menu')
+			})
+		},
+
+		clearStatus() {
+			this.user.password = ''
+			this.submitting = false
+			this.error = true
+		},
 
 	},
-	
+
 	computed: {
+		invalidName: function () {
+			if (this.user.name === '') {
+				alert("name must not be empty")
+				return true
+			} else {
+				return false
+			}
+		},
 
-	},
+		invalidEmail: function () {
+			if (this.user.email=== '') {
+				alert("email must not be empty")
+				return true
+			} else {
+				return false
+			}
+		},
 
-	directives: {
+		invalidPassword: function () {
+			if (this.user.password === '') {
+				alert("password cannot be empty");
+				return true
+			} else {
+				return false
+			}
+		},
 
 	},
 }
@@ -63,11 +133,4 @@ div {
 		@include debug();
 	}
 }
-
-@mixin font() {
-	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
-	font-style: normal;
-}
-
 </style>

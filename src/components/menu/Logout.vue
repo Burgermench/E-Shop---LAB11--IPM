@@ -1,10 +1,23 @@
 <template>
     <div>
+        <h1>Bye, see you soon!</h1>
     </div>
 </template>
 
 <script>
-
+export default {
+    name: 'Logout',
+    data() {
+        return {
+        }
+    },
+    created() {
+        this.$store.dispatch('user/logoutUser')
+        setTimeout(() => {
+            this.$router.push('/menu')
+        }, 2000)
+    }
+}
 </script>
 
 <style lang="scss" scoped>

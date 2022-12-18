@@ -16,7 +16,10 @@ const user = {
     getters: {
         getUser (state) {
             return state.user;
-        },   
+		},   
+		// if (this.$store.getters['user/getUser'].id) {
+		// 	// user is logged in
+		// }		
     }, 
     mutations: {
         loginUser(state, user){
