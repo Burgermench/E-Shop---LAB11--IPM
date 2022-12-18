@@ -78,25 +78,17 @@ export default {
 		},
 
 		createOrder() {
+			let price = this.totalPrice().toString();
 			let order = {
 				customer_id: this.$store.getters['user/getUser'].id,
-				status_id: 1,
-				total: this.totalPrice() * 100,
-				order_items: []
+				status_id: '1',
+				totalAmount: price,
+				items: this.basketw
 			};
-			this.basket.forEach(item => {
-				let product = this.associatedProduct(item.id);
-				order.order_items.push({
-					product_id: product.id,
-					name: product.name,
-					price: product.price,
-					quantity: item.quantity
-				});
-			});
-			this.$store.dispatch('orders/addOrder', order).then(success => {
+			console.log("order: ", order)
+			this.$store.dispatch('orders/addOrder', order).then((success) => {
 				if (success) {
-					alert("Order successfully created!")
-					this.clearBasket();
+					this.$store.commit('basket/clearBasket');
 					this.$router.push('/menu');
 				}
 			});
@@ -106,9 +98,10 @@ export default {
 			let total = 0;
 			this.basket.forEach(item => {
 				let product = this.associatedProduct1(item.id);
-				total += product.price/100 * item.quantity;
+				total += product.price / 100 * item.quantity;
+				total = parseInt(total);
 			});
-			return total.toFixed(2);
+			return total;
 		},
 
 		associatedProduct1(id) {

@@ -1,103 +1,40 @@
 <template>
     <div>
-        <div id="content-wrapper">
-            <Header />
-            <div id="r1">
-                <div id="r1c1"></div>
-                <div id="r1c2">
-
-                </div>
-                <div id="r1c3"></div>
-            </div>
-        </div>
-        <Footer />
+    
     </div>
 </template>
 
 
 
 <script>
-import Footer from '@/components/Footer.vue'
-import Header from '@/components/Header.vue'
-
 
 export default {
     components: {
-		Footer,
-        Header
-	},
-	data() {
-		return {
-            isHidden: false,
-            id: 0,
-            orders: 
-            [
-            //{
-            //"id":"11",
-            //"customer_id":"20",
-            //"created_at":"2021-12-03 18:20:31",
-            //"status_id":"1",
-            //"total":"190",
-            //"order_items":[{"product_id":"2","name":"Salmon Roll","price":"18","quantity":"4"},{"product_id":"3","quantity":"3"},{"product_id":"4","quantity":"2"}]
-            //}
-                ],
-            window: {
-                width: 0,
-                height: 0,
-            },
-		}
-	},
+
+    },
+    data() {
+        return {
+
+        }
+    },
     created() {
-        window.addEventListener('resizeWindow', this.handleResizeWindow);
+
     },
 
     mounted() {
-        this.resizeWindow();
-        this.getImageResized("bckg_img", this.window.width, this.window.height, require('@/assets/images/background_white_pattern_triangles.png'));
+
     },
 
     destroyed() {
-        window.removeEventListener('resizeWindow', this.handleResizeWindow);
+
     },
 
     methods: {
-        getImageResized(elementId, w, h, source) {
-            var img = new Image(),
-                canvas = document.getElementById(elementId),
-                ctx = canvas.getContext("2d");
-            img.onload = () => {
-                if (w == undefined) {
-                    canvas.width = (img.naturalWidth * h) / img.naturalHeight;
-                } else {
-                    canvas.width = w;
-                }
-                if (h == undefined) {
-                    canvas.height = (img.naturalHeight * w) / img.naturalWidth;
-                } else {
-                    canvas.height = h;
-                }
-                if (h == undefined && w == undefined) {
-                    canvas.width = img.naturalWidth;
-                    canvas.height = img.naturalHeight;
-                }
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-            };
-            img.src = source;
-            return img;
-        },
-
-        resizeWindow() {
-            this.window.width = window.innerWidth;
-            this.window.height = window.innerHeight;
-        },
-
-        handleResizeWindow() {
-            this.resizeWindow();
-        },
     },
 }
 </script>
+
+
 
 <style lang="scss" scoped>
 /* DEBUG */
@@ -119,48 +56,5 @@ div {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-style: normal;
-}
-
-#content-wrapper {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-    background-image: url('~@/assets/images/background_white_pattern_triangles.png');
-}
-
-#bckg_img {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#r1 {
-    display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: 5% auto 5%;
-    grid-template-rows: 100vh;
-    grid-template-areas: 'r1c1 r1c2 r1c3';
-}
-
-#r1c1 {
-    grid-area: r1c1;
-    //background color is a gradient 
-    //from left to right
-    //from half transparent grey to full grey
-    background: linear-gradient(to left, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
-}
-
-#r1c2 {
-    grid-area: r1c2;
-    background-color: rgba(100, 100, 100, 0.5);
-}
-
-#r1c3 {
-    grid-area: r1c3;
-    background-color: transparent;
-    background: linear-gradient(to right, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 1));
 }
 </style>

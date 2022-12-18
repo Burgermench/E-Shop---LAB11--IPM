@@ -17,32 +17,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $json=file_get_contents('php://input');
     // {"user_id":"19","totalAmount":"102","status_id":"1","items":[{"id":"1","quantity":"1"},{"id":"2","quantity":"2"}]}
     $data = json_decode($json, true);
-
-    // check if all properties are set
-    // and show the ones that are not set
-    // as an error
-    if (isset($data['totalAmount'])) {
-        header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Authorization, Origin, User-Token, X-Requested-With, Content-Type");
-        die('{"Error":" \'totalAmount\' property is missing in data object"}');
-    }
-    if (isset($data['status_id'])) {
-        header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Authorization, Origin, User-Token, X-Requested-With, Content-Type");
-        die('{"Error":" \'status_id\' property is missing in data object"}');
-    }
-    if (isset($data['items'])) {
-        header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Authorization, Origin, User-Token, X-Requested-With, Content-Type");
-        die('{"Error":" \'items\' property is missing in data object"}');
-    }
-
     
     if (isset($data['totalAmount']) && isset($data['status_id']) && isset($data['items'])) {
         // ligação base de dados
