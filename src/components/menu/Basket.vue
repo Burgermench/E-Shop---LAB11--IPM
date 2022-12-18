@@ -78,12 +78,12 @@ export default {
 		},
 
 		createOrder() {
-			let price = this.totalPrice().toString();
+			let price = this.totalPrice();
 			let order = {
 				customer_id: this.$store.getters['user/getUser'].id,
 				status_id: '1',
 				totalAmount: price,
-				items: this.basketw
+				items: this.basket
 			};
 			console.log("order: ", order)
 			this.$store.dispatch('orders/addOrder', order).then((success) => {
