@@ -48,6 +48,7 @@
                     <!-- categories -->
                     <div id="r2c2r1c2">
                         <div id="categories">
+                            <!-- however if click outside, displayCategories = false e-->
                             <button id="categories_btn"
                                 @click = "displayCaregories = !displayCaregories"
                                 >
@@ -283,7 +284,6 @@ export default {
             if (this.$store.getters['user/getUser'].name !== '' && this.$store.getters['user/getUser'].name !== undefined) {
                 return true
             } else {
-                console.log("valid user previously unlogged: " + this.$store.getters['user/getUser'].name)
                 return false
             }
         },
@@ -304,11 +304,13 @@ $debug: false;
     border-color: red;
     border-width: 1px;
 }
+
 div {
     @if $debug {
         @include debug();
     }
 }
+
 @mixin font() {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -448,7 +450,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 11px;
+        font-size: 22px;
     }
     &:focus {
         outline: none;
@@ -479,7 +481,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 11px;
+        font-size: 22px;
     }
     &:focus {
         outline: none;
@@ -507,7 +509,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 14px;
+        font-size: 22px;
     }
     &:focus {
         outline: none;
@@ -546,7 +548,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 14px;
+        font-size: 22px;
     }
     &:focus {
         outline: none;
@@ -575,7 +577,7 @@ div {
         background-color: grey;
     }
     &:active {
-        font-size: 14px;
+        font-size: 22px;
     }
     &:focus {
         outline: none;

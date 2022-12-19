@@ -3,17 +3,17 @@
 		<h1>Login</h1>
 		<hr>
 		<form style="text-align: right; margin-right: 50vw;" @submit.prevent="handleSubmit">
-			<div>
-				<label style="position:relative;" for="name">Name</label>
+			<div style="margin-bottom:15px;">
+				<label style="position:relative; margin-right: 5px;" for="name">Name</label>
 				<input style="position:absolute;" type="text" id="name" v-model="user.name"
 					placeholder="your username" required>
 			</div>
-			<div>
-				<label style="position:relative;" for="email">Email</label>
+			<div style="margin-bottom:15px;">
+				<label style="position:relative; margin-right: 5px;" for="email">Email</label>
 				<input style="position:absolute;" type="email" id="email" v-model="user.email" placeholder="your e-mail" required>
 			</div>
-			<div>
-				<label style="position:relative;" for="password">Password</label>
+			<div style="margin-bottom:15px;">
+				<label style="position:relative; margin-right: 5px;" for="password">Password</label>
 				<input style="position:absolute;" type="password" id="password" v-model="user.password"
 					placeholder="your password" required>
 			</div>

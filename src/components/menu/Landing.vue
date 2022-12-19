@@ -10,7 +10,7 @@
             </div>
         
             <div id="r2c2">
-                <img id="kit2">
+                <img id="kit2" @click="$router.push('/menu/:Educacao')">
             </div>
         </div>
 
@@ -404,7 +404,7 @@ div {
     padding-top: 10px;
     grid-area: r5;
     width: 100%;
-    height: 250px;
+    height: 280px;
     position: relative;
 }
 
@@ -418,11 +418,13 @@ div {
     color: #fefefe;
 }
 
+$carousel-width: 350px;
+
 #d3carouselContainer {
     position: relative;
-    width: 220px;
-    margin: 100px auto 0 auto;
-    perspective: 100000px;
+    width: 300px;
+    margin: 100px auto 100px auto;
+    perspective: 1000px;
 }
 
 .carousel {
@@ -431,11 +433,14 @@ div {
     height: 100%;
     transform-style: preserve-3d;
     animation: rotate360 60s infinite forwards linear;
+    &:hover {
+        animation-play-state: paused;
+    }
 }
 
 .carousel__face {
     position: absolute;
-    width: 300px;
+    width: 250px;
     height: auto;
     max-height: 180px;
     top: 20px;
@@ -444,6 +449,10 @@ div {
     background-size: cover;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
     display: flex;
+    justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 span {
@@ -452,7 +461,7 @@ span {
 }
 
 .carousel__face:nth-child(1) {
-    transform: rotateY(0deg) translateZ(430px);
+    transform: rotateY(0deg) translateZ($carousel-width);
 }
 
 #caroussel_arduino {
@@ -461,7 +470,7 @@ span {
 }
 
 .carousel__face:nth-child(2) {
-    transform: rotateY(40deg) translateZ(430px);
+    transform: rotateY(40deg) translateZ($carousel-width);
 }
 
 #caroussel_motherboard {
@@ -470,7 +479,7 @@ span {
 }
 
 .carousel__face:nth-child(3) {
-    transform: rotateY(80deg) translateZ(430px);
+    transform: rotateY(80deg) translateZ($carousel-width);
 }
 
 #caroussel_graphicsCard {
@@ -479,7 +488,7 @@ span {
 }
 
 .carousel__face:nth-child(4) {
-    transform: rotateY(120deg) translateZ(430px);
+    transform: rotateY(120deg) translateZ($carousel-width);
 }
 
 #caroussel_processor {
@@ -488,7 +497,7 @@ span {
 }
 
 .carousel__face:nth-child(5) {
-    transform: rotateY(160deg) translateZ(430px);
+    transform: rotateY(160deg) translateZ($carousel-width);
 }
 
 #caroussel_supply {
@@ -497,7 +506,7 @@ span {
 }
 
 .carousel__face:nth-child(6) {
-    transform: rotateY(200deg) translateZ(430px);
+    transform: rotateY(200deg) translateZ($carousel-width);
 }
 
 #caroussel_ram {
@@ -506,7 +515,7 @@ span {
 }
 
 .carousel__face:nth-child(7) {
-    transform: rotateY(240deg) translateZ(430px);
+    transform: rotateY(240deg) translateZ($carousel-width);
 }
 
 #caroussel_storage {
@@ -515,7 +524,7 @@ span {
 }
 
 .carousel__face:nth-child(8) {
-    transform: rotateY(280deg) translateZ(430px);
+    transform: rotateY(280deg) translateZ($carousel-width);
 }
 
 #caroussel_logo {
@@ -524,7 +533,7 @@ span {
 }
 
 .carousel__face:nth-child(9) {
-    transform: rotateY(320deg) translateZ(430px);
+    transform: rotateY(320deg) translateZ($carousel-width);
 }
 
 #caroussel_media {

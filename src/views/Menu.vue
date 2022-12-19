@@ -5,13 +5,12 @@
 			<div id="r1">
 				<div id="r1c1"></div>
 
-				<!-- CONTENT START -->
 				<div id="r1c2">
-					<!-- MENU STRUCTURE -->
+					<!-- MENU -->
 					<div v-if="Content === undefined">
 						<Landing/>
 					</div>
-					<!-- CATEGORY STRUCTURE -->
+					<!-- CATEGORY -->
 					<div v-else-if="Content === ':Motherboards'">
 						<Motherboards/>
 					</div>
@@ -33,7 +32,7 @@
 					<div v-else-if="Content === ':Armazenamento'">
 						<Storage/>
 					</div>
-					<!-- USER STRUCTURE -->
+					<!-- USER -->
 					<div v-else-if="Content === ':Login'">
 						<Login/>
 					</div>
@@ -43,7 +42,7 @@
 					<div v-else-if="Content == ':Logout'">
 						<Logout/>
 					</div>
-					<!-- ORDER STRUCTURE -->
+					<!-- ORDER -->
 					<div v-else-if="Content === ':MyOrders'">
 						<MyOrders/>
 					</div>
@@ -55,7 +54,6 @@
 						<h1>Content: ({{Content}})</h1>
 					</div>
 				</div>
-				<!-- CONTENT END -->
 
 				<div id="r1c3"></div>
 			</div>
