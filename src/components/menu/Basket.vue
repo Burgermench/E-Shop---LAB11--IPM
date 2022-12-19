@@ -10,7 +10,7 @@
 			<button @click="decrementProduct(item.id)">-</button>
 		</div>
 		<div>
-			<p>Total: {{ totalPrice() }} €</p>
+			<p>Total: {{ decimalOf(totalPrice()) }} €</p>
 		</div>
 		<button @click="clearBasket()">Clear Basket</button>
 		<button @click="checkout()">Checkout</button>
@@ -98,10 +98,14 @@ export default {
 			let total = 0;
 			this.basket.forEach(item => {
 				let product = this.associatedProduct1(item.id);
-				total += product.price / 100 * item.quantity;
+				total += product.price * item.quantity;
 				total = parseInt(total);
 			});
 			return total;
+		},
+		
+		decimalOf() {
+			return (this.totalPrice() / 100).toFixed(2);
 		},
 
 		associatedProduct1(id) {

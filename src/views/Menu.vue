@@ -137,7 +137,6 @@ export default {
 	methods: {
 		setContent() {
 			this.Content = this.$route.params.Content;
-			console.log("Menu content: " + this.Content);
 		},
 	},
 	
