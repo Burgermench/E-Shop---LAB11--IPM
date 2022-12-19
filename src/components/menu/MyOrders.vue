@@ -1,15 +1,9 @@
 <template>
-    <div style="">
+    <div style="text-align: left;">
         <div v-for="order in orders" :key="order.id">
                 <p> Data do pedido: {{ order.created_at }}</p>
                 <p> Estado: {{ stateOf(order.status_id) }}</p>
                 <p> Total: {{ totalPrice(order.total) }}</p>
-                <p> Itens incluidos: </p>
-            <div v-for="item in order.order_items" :key="item.id">
-                <p> Nome {{ item.product.name }}</p>
-                <p> Preco {{ item.product.price }}</p>
-                <p> Quantidade {{ item.quantity }}</p>
-            </div>
             <hr>
         </div>
     </div>
@@ -64,7 +58,7 @@ export default {
 
         totalPrice(num) {
             return num/100 + "€"
-        }
+        },
 
     },
 }

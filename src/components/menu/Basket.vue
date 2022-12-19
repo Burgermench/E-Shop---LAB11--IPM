@@ -70,11 +70,16 @@ export default {
 		},
 
 		checkout() {
-			if (!this.userIsLogged) {
-				// back to the menu with you
+			if (this.userLoggedIn() == false) {
+				this.clearBasket()
 				this.$router.push('/menu');
+				return
 			}
 			this.createOrder()
+		},
+
+		userLoggedIn() {
+			return this.$store.getters['user/getUser'].id !== undefined;
 		},
 
 		createOrder() {
@@ -89,7 +94,7 @@ export default {
 			this.$store.dispatch('orders/addOrder', order).then((success) => {
 				if (success) {
 					this.$store.commit('basket/clearBasket');
-					this.$router.push('/menu');
+					this.$router.push('/menu');		
 				}
 			});
 		},
@@ -100,21 +105,17 @@ export default {
 				let product = this.associatedProduct1(item.id);
 				total += product.price * item.quantity;
 				total = parseInt(total);
-			});
+			});	
 			return total;
 		},
-		
+	
 		decimalOf() {
 			return (this.totalPrice() / 100).toFixed(2);
-		},
+		},	
 
 		associatedProduct1(id) {
 			return this.$store.getters['products/getProducts'].find(product => product.id == id);
-		},
-
-		userIsLogged: function() {
-			return this.$store.getters['user/getUser'].id !== undefined;
-		},
+		},	
 
 		clearBasket() {
 			this.$store.commit('basket/clearBasket');
